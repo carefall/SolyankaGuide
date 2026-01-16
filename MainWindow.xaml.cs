@@ -12,12 +12,19 @@ namespace SolyankaGuide
     public partial class MainWindow : Window
     {
 
-        private ToggleButton _activeTopButton;
+        private ToggleButton? _activeTopButton;
         private Dictionary<int, List<Description>> _sidePanelItems = new Dictionary<int, List<Description>>();
+        private static MainWindow? instance;
+
+        public static MainWindow? GetInstance()
+        {
+            return instance; 
+        }
 
         public MainWindow()
         {
             InitializeComponent();
+            instance = this;
             var data = JsonLoader.FillFromJson();
             if (data == null)
             {
@@ -95,6 +102,8 @@ namespace SolyankaGuide
             _activeTopButton = clicked;
             if (clicked.IsChecked == true)
             {
+                Topic.Visibility = Visibility.Hidden;
+                SubList.Visibility = Visibility.Hidden;
                 SidePanelButtonsPanel.Children.Clear();
                 if (!_sidePanelItems.TryGetValue(index, out var items)) return;
                 for (int i = 0; i < items.Count; i++)
@@ -112,15 +121,29 @@ namespace SolyankaGuide
                         foreach (RadioButton child in SidePanelButtonsPanel.Children.OfType<RadioButton>())
                             child.IsChecked = false;
                         btn.IsChecked = true;
-                        var bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/" + item.imagePath, UriKind.Absolute));
-                        DescriptionImage.Source = bitmap;
-                        DescriptionImage.Width = bitmap.PixelWidth;
-                        DescriptionImage.Height = bitmap.PixelHeight;
-                        DescriptionImage.Stretch = Stretch.Uniform;
-                        DescriptionHeader.Text = item.header;
-                        var textBlock = Description.GetText(item.text, item.center, DescriptionScrollViewer.ActualWidth);
-                        DescriptionScrollViewer.Content = textBlock;
-                        Topic.Visibility = Visibility.Visible;
+                        if (item.subButtons != null)
+                        {
+                            SubGrid.Children.Clear();
+                            foreach (SubButton sb in item.subButtons)
+                            {
+                                SubGrid.Children.Add(sb.BuildSubButtonUI());
+                            }
+                            SubList.Visibility = Visibility.Visible;
+                            Topic.Visibility = Visibility.Hidden;
+                        }
+                        else
+                        {
+                            SubList.Visibility = Visibility.Hidden;
+                            var bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/" + item.imagePath, UriKind.Absolute));
+                            DescriptionImage.Source = bitmap;
+                            DescriptionImage.Width = bitmap.PixelWidth;
+                            DescriptionImage.Height = bitmap.PixelHeight;
+                            DescriptionImage.Stretch = Stretch.Uniform;
+                            DescriptionHeader.Text = item.header;
+                            var textBlock = Description.GetText(item.text, item.center, DescriptionScrollViewer.ActualWidth);
+                            DescriptionScrollViewer.Content = textBlock;
+                            Topic.Visibility = Visibility.Visible;
+                        }
                     };
                     SidePanelButtonsPanel.Children.Add(btn);
                     if (i < items.Count - 1)
@@ -142,6 +165,21 @@ namespace SolyankaGuide
         {
             ((Storyboard)Resources["HideSidePanel"]).Begin();
             Topic.Visibility = Visibility.Hidden;
+            SubList.Visibility = Visibility.Hidden;
+        }
+
+        public void Switch(SubButton relatedButton)
+        {
+            SubList.Visibility = Visibility.Hidden;
+            var bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/" + relatedButton.imagePath, UriKind.Absolute));
+            DescriptionImage.Source = bitmap;
+            DescriptionImage.Width = bitmap.PixelWidth;
+            DescriptionImage.Height = bitmap.PixelHeight;
+            DescriptionImage.Stretch = Stretch.Uniform;
+            DescriptionHeader.Text = relatedButton.header;
+            var textBlock = Description.GetText(relatedButton.text, false, DescriptionScrollViewer.ActualWidth);
+            DescriptionScrollViewer.Content = textBlock;
+            Topic.Visibility = Visibility.Visible;
         }
     }
 }

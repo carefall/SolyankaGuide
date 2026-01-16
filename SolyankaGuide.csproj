@@ -14,8 +14,10 @@
     <None Remove="Assets\Images\current.png" />
     <None Remove="Assets\Images\discord.png" />
     <None Remove="Assets\Images\help.jpg" />
+    <None Remove="Assets\Images\icon0.png" />
     <None Remove="Assets\Images\ideas.png" />
     <None Remove="Assets\Images\install.png" />
+    <None Remove="Assets\Images\prolog.png" />
     <None Remove="Assets\Images\reqs.jpg" />
     <None Remove="Assets\Images\settings.png" />
     <None Remove="Assets\Images\solyanka.jpg" />
@@ -35,8 +37,10 @@
     <Resource Include="Assets\Images\current.png" />
     <Resource Include="Assets\Images\discord.png" />
     <Resource Include="Assets\Images\help.jpg" />
+    <Resource Include="Assets\Images\icon0.png" />
     <Resource Include="Assets\Images\ideas.png" />
     <Resource Include="Assets\Images\install.png" />
+    <Resource Include="Assets\Images\prolog.png" />
     <Resource Include="Assets\Images\reqs.jpg" />
     <Resource Include="Assets\Images\settings.png" />
     <Resource Include="Assets\Images\solyanka.jpg">

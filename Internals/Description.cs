@@ -4,19 +4,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace SolyankaGuide.Internals
 {
     internal class Description
     {
-        public Description(string buttonName, string header, string text, bool center, string imagePath)
+        public Description(string buttonName, string header, string text, bool center, string imagePath, SubButton[] subButtons)
         {
             this.buttonName = buttonName;
             this.header = header;
             this.text = text;
             this.center = center;
             this.imagePath = imagePath;
+            this.subButtons = subButtons;
         }
 
         public string buttonName { get; set; }
@@ -27,10 +27,7 @@ namespace SolyankaGuide.Internals
         public bool center { get; set; }
         public string imagePath { get; set; }
 
-        public enum DescriptionLayouts
-        {
-            Text, Image, ImageText, ToDo
-        }
+        public SubButton[] subButtons { get; set; }
 
         public static TextBlock GetText(string text, bool center, double width)
         {
