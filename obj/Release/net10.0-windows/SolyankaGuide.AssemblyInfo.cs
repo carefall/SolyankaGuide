@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SolyankaGuide")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+583a21856431097411b72636f8dc3056354ebedf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b6c3b523b5623fce2af0dabedbd307312e2de50")]
 [assembly: System.Reflection.AssemblyProductAttribute("SolyankaGuide")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SolyankaGuide")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

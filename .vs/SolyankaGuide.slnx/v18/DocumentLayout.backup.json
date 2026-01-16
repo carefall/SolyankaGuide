@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\license||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:license||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\assets\\data\\helpbuttons.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:assets\\data\\helpbuttons.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A3C7495E-D6DB-FCC8-7B10-8B8CC963F152}|SolyankaGuide.csproj|c:\\users\\caref\\source\\repos\\solyankaguide\\internals\\description.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,30 +46,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "JsonLoader.cs",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Internals\\JsonLoader.cs",
               "RelativeDocumentMoniker": "Internals\\JsonLoader.cs",
               "ToolTip": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Internals\\JsonLoader.cs",
               "RelativeToolTip": "Internals\\JsonLoader.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwA4AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-15T19:21:20.539Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Description.cs",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Internals\\Description.cs",
               "RelativeDocumentMoniker": "Internals\\Description.cs",
               "ToolTip": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Internals\\Description.cs",
               "RelativeToolTip": "Internals\\Description.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAuwCYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAA8wCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-15T19:26:17.377Z",
               "IsPinned": true,
@@ -65,7 +78,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "LICENSE",
+              "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\LICENSE",
+              "RelativeDocumentMoniker": "LICENSE",
+              "ToolTip": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\LICENSE",
+              "RelativeToolTip": "LICENSE",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-16T10:35:20.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\AssemblyInfo.cs",
+              "RelativeToolTip": "AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T10:35:13.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T10:35:07.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "helpButtons.json",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Assets\\Data\\helpButtons.json",
               "RelativeDocumentMoniker": "Assets\\Data\\helpButtons.json",
@@ -78,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "UrlOpener.cs",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\Internals\\UrlOpener.cs",
               "RelativeDocumentMoniker": "Internals\\UrlOpener.cs",
@@ -91,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -104,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\caref\\source\\repos\\SolyankaGuide\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
