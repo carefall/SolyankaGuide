@@ -6,15 +6,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>appIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Assets\Data\categories.json" />
     <None Remove="Assets\Images\background.jpg" />
+    <None Remove="Assets\Images\beginning.png" />
+    <None Remove="Assets\Images\car.png" />
     <None Remove="Assets\Images\changelog.png" />
     <None Remove="Assets\Images\current.png" />
     <None Remove="Assets\Images\discord.png" />
     <None Remove="Assets\Images\help.jpg" />
+    <None Remove="Assets\Images\house.png" />
     <None Remove="Assets\Images\icon0.png" />
     <None Remove="Assets\Images\ideas.png" />
     <None Remove="Assets\Images\install.png" />
@@ -31,6 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\beginning.png" />
+    <Resource Include="Assets\Images\car.png" />
+    <Resource Include="Assets\Images\house.png" />
     <Resource Include="Assets\Images\sidorDoktor.png" />
     <Resource Include="Assets\Images\starting.png" />
   </ItemGroup>
