@@ -75,11 +75,8 @@
     <Resource Include="Assets\Images\settings.png" />
     <Resource Include="Assets\Images\story.png" />
     <Resource Include="Assets\Images\support.png" />
-    <Resource Include="Assets\Images\virustotal.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Assets\Images\virustotal.png" />
     <Resource Include="Assets\Images\when.png" />
     <Resource Include="Assets\Images\yt.png" />
   </ItemGroup>
-
 </Project>
