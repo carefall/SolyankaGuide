@@ -43,6 +43,8 @@ namespace SolyankaGuide
                 Application.Current.Shutdown();
                 return;
             }
+            DescControl.Visibility = Visibility.Hidden;
+            DescGridControl.Visibility = Visibility.Hidden;
             Elements.Children.Clear();
             for (int i = 0; i < elements.Length; i++)
             {
