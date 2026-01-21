@@ -29,6 +29,7 @@ namespace SolyankaGuide
             DescHeader.Text = element.Header;
             var textBlock = TextGen.GetText(element.Text!, element.Centered, DescScrollView.ActualWidth);
             DescScrollView.Content = textBlock;
+            DescScrollView.ScrollToTop();
         }
 
         private void ShowDescription(Description desc)
@@ -41,9 +42,10 @@ namespace SolyankaGuide
             DescHeader.Text = desc.Header;
             var textBlock = TextGen.GetText(desc.Text!, desc.Centered, DescScrollView.ActualWidth);
             DescScrollView.Content = textBlock;
+            DescScrollView.ScrollToTop();
             Visibility = Visibility.Visible;
         }
 
-        
+
     }
 }

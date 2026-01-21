@@ -8,8 +8,9 @@ namespace SolyankaGuide.Internals
 {
     internal class TextGen
     {
-        public static TextBlock GetText(string text, bool centered, double width)
+        public static TextBlock GetText(string[] text, bool centered, double width)
         {
+
             var tb = new TextBlock
             {
                 Width = width,
@@ -17,8 +18,9 @@ namespace SolyankaGuide.Internals
                 FontSize = 24,
                 TextWrapping = TextWrapping.Wrap,
                 TextAlignment = centered ? TextAlignment.Center : TextAlignment.Justify,
+                Focusable = false
             };
-            string[] lines = text.Split("\n");
+            string[] lines = text;
             for (int i = 0; i < lines.Length; i++)
             {
                 if (i != 0) tb.Inlines.Add("\n");
@@ -55,6 +57,7 @@ namespace SolyankaGuide.Internals
                 }
             }
             return tb;
+
         }
 
         private static bool Hyperlink(string input, out string output, out string link, out string wordToReplace)

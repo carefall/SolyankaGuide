@@ -16,12 +16,15 @@
 		<None Remove="Assets\Images\car.png" />
 		<None Remove="Assets\Images\changelog.png" />
 		<None Remove="Assets\Images\current.png" />
+		<None Remove="Assets\Images\cycle.png" />
 		<None Remove="Assets\Images\discord.png" />
 		<None Remove="Assets\Images\help.jpg" />
 		<None Remove="Assets\Images\house.png" />
 		<None Remove="Assets\Images\icon0.png" />
 		<None Remove="Assets\Images\ideas.png" />
 		<None Remove="Assets\Images\install.png" />
+		<None Remove="Assets\Images\items.png" />
+		<None Remove="Assets\Images\mags.png" />
 		<None Remove="Assets\Images\needs.png" />
 		<None Remove="Assets\Images\pravki.png" />
 		<None Remove="Assets\Images\prolog.png" />
@@ -32,6 +35,9 @@
 		<None Remove="Assets\Images\storage.png" />
 		<None Remove="Assets\Images\story.png" />
 		<None Remove="Assets\Images\support.png" />
+		<None Remove="Assets\Images\travel.png" />
+		<None Remove="Assets\Images\troll.png" />
+		<None Remove="Assets\Images\upgrades.png" />
 		<None Remove="Assets\Images\virustotal.png" />
 		<None Remove="Assets\Images\volume.png" />
 		<None Remove="Assets\Images\when.png" />
@@ -64,7 +70,10 @@
 		<Resource Include="Assets\Images\changelog.png" />
 		<Resource Include="Assets\Images\beginning.png" />
 		<Resource Include="Assets\Images\car.png" />
+		<Resource Include="Assets\Images\cycle.png" />
 		<Resource Include="Assets\Images\house.png" />
+		<Resource Include="Assets\Images\items.png" />
+		<Resource Include="Assets\Images\mags.png" />
 		<Resource Include="Assets\Images\needs.png" />
 		<Resource Include="Assets\Images\pravki.png" />
 		<Resource Include="Assets\Images\sidorDoktor.png" />
@@ -82,6 +91,9 @@
 		<Resource Include="Assets\Images\storage.png" />
 		<Resource Include="Assets\Images\story.png" />
 		<Resource Include="Assets\Images\support.png" />
+		<Resource Include="Assets\Images\travel.png" />
+		<Resource Include="Assets\Images\troll.png" />
+		<Resource Include="Assets\Images\upgrades.png" />
 		<Resource Include="Assets\Images\virustotal.png" />
 		<Resource Include="Assets\Images\volume.png" />
 		<Resource Include="Assets\Images\when.png" />

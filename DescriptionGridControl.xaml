@@ -6,11 +6,9 @@
              xmlns:local="clr-namespace:SolyankaGuide"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#99000000" CornerRadius="10" Padding="20" Margin="15,15,5,15">
-            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel x:Name="Descriptions" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="Auto"/>
-            </ScrollViewer>
-        </Border>
-    </Grid>
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#99000000" CornerRadius="10" Margin="15,15,5,15">
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="15,0,15,0">
+            <WrapPanel x:Name="Descriptions" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </ScrollViewer>
+    </Border>
 </UserControl>
