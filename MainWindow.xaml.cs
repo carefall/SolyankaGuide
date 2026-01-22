@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using SolyankaGuide.Internals;
+using System.IO;
+using System.Windows;
 
 namespace SolyankaGuide
 {
@@ -7,6 +9,7 @@ namespace SolyankaGuide
         public MainWindow()
         {
             InitializeComponent();
+            BGImage.Source = ImageLoader.LoadImage("background.jpg");
         }
     }
 }
