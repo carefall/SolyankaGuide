@@ -20,7 +20,6 @@
 		<None Remove="Assets\Images\discord.png" />
 		<None Remove="Assets\Images\help.jpg" />
 		<None Remove="Assets\Images\house.png" />
-		<None Remove="Assets\Images\icon0.png" />
 		<None Remove="Assets\Images\ideas.png" />
 		<None Remove="Assets\Images\install.png" />
 		<None Remove="Assets\Images\items.png" />
@@ -43,10 +42,6 @@
 		<None Remove="Assets\Images\when.png" />
 		<None Remove="Assets\Images\yt.png" />
 		<None Remove="Internals\token.txt" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="appIcon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,39 +68,103 @@
 	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<Content Include="appIcon.ico" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Assets\Images\changelog.png" />
-		<Resource Include="Assets\Images\beginning.png" />
-		<Resource Include="Assets\Images\car.png" />
-		<Resource Include="Assets\Images\cycle.png" />
-		<Resource Include="Assets\Images\house.png" />
-		<Resource Include="Assets\Images\items.png" />
-		<Resource Include="Assets\Images\mags.png" />
-		<Resource Include="Assets\Images\needs.png" />
-		<Resource Include="Assets\Images\pravki.png" />
-		<Resource Include="Assets\Images\sidorDoktor.png" />
-		<Resource Include="Assets\Images\starting.png" />
-		<Resource Include="Assets\Images\background.jpg" />
-		<Resource Include="Assets\Images\current.png" />
-		<Resource Include="Assets\Images\discord.png" />
-		<Resource Include="Assets\Images\help.jpg" />
-		<Resource Include="Assets\Images\Icons\icon0.png" />
-		<Resource Include="Assets\Images\ideas.png" />
-		<Resource Include="Assets\Images\install.png" />
-		<Resource Include="Assets\Images\prolog.png" />
-		<Resource Include="Assets\Images\reqs.jpg" />
-		<Resource Include="Assets\Images\settings.png" />
-		<Resource Include="Assets\Images\storage.png" />
-		<Resource Include="Assets\Images\story.png" />
-		<Resource Include="Assets\Images\support.png" />
-		<Resource Include="Assets\Images\travel.png" />
-		<Resource Include="Assets\Images\troll.png" />
-		<Resource Include="Assets\Images\upgrades.png" />
-		<Resource Include="Assets\Images\virustotal.png" />
-		<Resource Include="Assets\Images\volume.png" />
-		<Resource Include="Assets\Images\when.png" />
-		<Resource Include="Assets\Images\yt.png" />
+		<Content Include="Assets\Images\changelog.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\beginning.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\car.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\cycle.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\house.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\items.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\mags.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\needs.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\pravki.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\sidorDoktor.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\starting.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\background.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\current.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\discord.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\help.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\icon0.png" />
+		<Content Include="Assets\Images\ideas.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\install.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\prolog.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\reqs.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\settings.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\storage.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\story.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\support.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\travel.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\troll.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\upgrades.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\virustotal.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\volume.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\when.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\yt.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Resource Include="Internals\token.txt" />
 	</ItemGroup>
 </Project>

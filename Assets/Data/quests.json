@@ -9,7 +9,7 @@
             {
                 "name": "Пробуждение",
                 "header": "Пробуждение",
-                "iconId": 0,
+                "gridImagePath": "icon0.png",
                 "imagePath": "sidorDoktor.png",
                 "centered": false,
                 "text": [
@@ -24,7 +24,7 @@
             {
                 "name": "Вспоминаем зону",
                 "header": "Начало сюжета",
-                "iconId": 0,
+                "gridImagePath": "icon0.png",
                 "imagePath": "beginning.png",
                 "centered": false,
                 "text": [
@@ -47,7 +47,7 @@
             {
                 "name": "Колёса",
                 "header": "АААвтомобили!",
-                "iconId": 0,
+                "gridImagePath": "icon0.png",
                 "imagePath": "car.png",
                 "centered": false,
                 "text": [
@@ -58,7 +58,7 @@
             {
                 "name": "Проклятый старый дом",
                 "header": "Дом с паранормальными явлениями",
-                "iconId": 0,
+                "gridImagePath": "icon0.png",
                 "imagePath": "house.png",
                 "centered": false,
                 "text": [

@@ -14,14 +14,22 @@ namespace SolyankaGuide.Internals
 
         public static async Task<bool> Update()
         {
-            var localFiles = GetLocalFiles(@"Assets/Data");
-            if (localFiles == null) return false;
-            var githubFiles = await GetGitHubFolderContents("carefall", "SolyankaGuide", "Assets/Data");
-            if (githubFiles == null || githubFiles.Count == 0) return false;
+            var localJsons = GetLocalFiles(@"Assets/Data");
+            var localImages = GetLocalFiles(@"Assets/Images");
+            if (localJsons == null || localImages == null) return false;
+            List<string> localFiles = new();
+            localFiles.AddRange(localImages);
+            localFiles.AddRange(localJsons);
+            var githubJsons = await GetGitHubFolderContents("carefall", "SolyankaGuide", "Assets/Data");
+            var githubImages = await GetGitHubFolderContents("carefall", "SolyankaGuide", "Assets/Images");
+            List<GitHubContentItem> githubFiles = new();
+            githubFiles.AddRange(githubImages);
+            githubFiles.AddRange(githubJsons);
+            if (githubJsons == null || githubJsons.Count == 0 || githubImages == null || githubImages.Count == 0) return false;
             Dictionary<string, string>? hashes = await GetGitHubHashes("carefall", "SolyankaGuide", "Assets/hashes.json", GetToken());
             if (hashes == null || hashes.Count == 0) return false;
             Dictionary<string, string> updateFiles = new();
-            foreach (var item in githubFiles)
+            foreach (var item in githubImages)
             {
                 bool needDownload = false;
                 var localFilePath = Path.Combine("Assets", item.Path!.Substring("Assets/".Length));
