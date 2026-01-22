@@ -29,11 +29,10 @@ namespace SolyankaGuide.Internals
             Dictionary<string, string?>? hashes = await GetGitHubHashes("carefall", "SolyankaGuide", "Assets/hashes.json", GetToken());
             if (hashes == null || hashes.Count == 0) return false;
             Dictionary<string, string> updateFiles = new();
-            foreach (var item in githubImages)
+            foreach (var item in githubFiles)
             {
                 bool needDownload = false;
                 var localFilePath = Path.Combine("Assets", item.Path!.Substring("Assets/".Length));
-                MessageBox.Show(localFilePath);
                 if (!File.Exists(localFilePath))
                 {
                     needDownload = true;
