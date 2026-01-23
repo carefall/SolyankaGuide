@@ -1,9 +1,10 @@
 {
   "categories.json": "a01032fc9003731e175f56239dfa1f1cbe17751f",
-  "faq.json": "eea359242fb68fe273bb4c4ea1ead07c44c47503",
+  "faq.json": "398a11aa7d1623dae25e6b55898fb040b55c8430",
   "items.json": "bec7b8703cb3a78b1f53349f243240212ac9b85c",
   "mech.json": "100920ed7b982a0931167ef511cc4126723f2dfe",
   "quests.json": "3d3ce9095922568693c7334c8530f91240f92782",
+  "actual.png": "a3e2b83a08e16c0eb90430110fd775fd676fb1e2",
   "background.jpg": "053acac91c1a86f1958e7b41ab5b3968826d2658",
   "beginning.png": "ad45802ccb04a7bf533784f23b03c3565e51aa76",
   "car.png": "9c682abac4eed165b3dd4506d26a6e121003cc37",
@@ -19,6 +20,8 @@
   "items.png": "e8f14e8b4f3e945e3171758617df1f5a47517836",
   "mags.png": "066b4b31874f17783ddababb137d862a2b9f8de6",
   "needs.png": "1b4fd3cb9c28f105f22b402dccdbb0e58433e85f",
+  "ogsr.png": "d8771320b26a9f4eb276ba0e086fe541ad5d48cc",
+  "ogsr2026.jpg": "f7fe21c77eb3739c0a21c4cceea7c285b60c97e9",
   "pravki.png": "14fa3417cd5a7976c7a9ae84c801375236c5dd8c",
   "prolog.png": "506242daecec5edc61758dc25d977bf8aa720316",
   "reqs.jpg": "ff2a2f07cfe6b14077924f99691c8b94cc62b33a",
@@ -32,6 +35,7 @@
   "troll.png": "9cfbb13373c914c6e6d086c36b131b6cc9114c25",
   "upgrades.png": "6e4ccc1bc844668de2ead7acea4117a7c7bcd5cf",
   "virustotal.png": "c004f71d3374fdda80f7e09c713a0acc01557f65",
+  "vk.png": "e97b16c187eeff02a5d064b15228127b021b28b7",
   "volume.png": "82dbf34ffdcff6a567072e5e107618ca69cd5ddd",
   "when.png": "674b37afa56bd107a144cfd8fb91547f796ab425",
   "yt.png": "3c957e8d543d510f747ed44a4d9afcacec4fe0b9"

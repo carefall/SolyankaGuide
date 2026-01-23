@@ -18,6 +18,11 @@ namespace SolyankaGuide
             CatergoriesControl.SwitchSidePanel += SwitchSidePanel;
         }
 
+        private void VKLink(object sender, RoutedEventArgs e)
+        {
+            UrlOpener.OpenUrl("https://vk.com/narodnaya_solyanka");
+        }
+
         private void DiscordLink(object sender, RoutedEventArgs e)
         {
             UrlOpener.OpenUrl("https://discord.gg/wd3tpW2fxH");
