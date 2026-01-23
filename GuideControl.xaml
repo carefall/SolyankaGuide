@@ -72,7 +72,7 @@
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    <Image Source="/Assets/Images/vk.png" Stretch="Uniform" Width="50" Height="50" Cursor=""/>
+                    <Image Source="/Internals/Images/vk.png" Stretch="Uniform" Width="50" Height="50" Cursor=""/>
                 </Button>
                 <Button Width="50" Height="50" Click="DiscordLink" BorderThickness="0" Cursor="Hand" Margin="0,0,0,10">
                     <Button.Template>
@@ -82,7 +82,7 @@
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    <Image Source="/Assets/Images/discord.png" Stretch="Uniform" Width="50" Height="50" Cursor=""/>
+                    <Image Source="/Internals/Images/discord.png" Stretch="Uniform" Width="50" Height="50" Cursor=""/>
                 </Button>
                 <Button Width="50" Height="50" Click="YoutubeLink" BorderThickness="0" Cursor="Hand">
                     <Button.Template>
@@ -92,7 +92,7 @@
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    <Image Source="/Assets/Images/yt.png" Stretch="Uniform" Width="50" Height="50"/>
+                    <Image Source="/Internals/Images/yt.png" Stretch="Uniform" Width="50" Height="50"/>
                 </Button>
             </StackPanel>
         </Border>

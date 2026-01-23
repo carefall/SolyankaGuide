@@ -64,9 +64,9 @@
 		<Content Include="Assets\Images\ogsr2026.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<EmbeddedResource Include="Assets\hashes.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</EmbeddedResource>
+		<Resource Include="Assets\hashes.json">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</Resource>
 		<Content Include="Assets\Data\quests.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -126,7 +126,7 @@
 		<Content Include="Assets\Images\current.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Resource Include="Assets\Images\discord.png">
+		<Resource Include="Internals\Images\discord.png">
 		  <CopyToOutputDirectory></CopyToOutputDirectory>
 		</Resource>
 		<Content Include="Assets\Images\help.jpg">
@@ -177,10 +177,10 @@
 		<Content Include="Assets\Images\when.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Resource Include="Assets\Images\yt.png">
+		<Resource Include="Internals\Images\yt.png">
 		  <CopyToOutputDirectory></CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Assets\Images\vk.png" />
+		<Resource Include="Internals\Images\vk.png" />
 		<Resource Include="Internals\token.txt" />
 	</ItemGroup>
 </Project>
