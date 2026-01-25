@@ -1,8 +1,9 @@
 ﻿using SolyankaGuide.Internals;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows;
+using System.Xml.Linq;
 
 namespace SolyankaGuide
 {
@@ -21,11 +22,14 @@ namespace SolyankaGuide
 
         private void ShowDescription(Element element)
         {
-            var bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/" + element.ImagePath, UriKind.Absolute));
-            DescImage.Source = bitmap;
-            DescImage.Width = bitmap.PixelWidth;
-            DescImage.Height = bitmap.PixelHeight;
-            DescImage.Stretch = Stretch.Uniform;
+            BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePath);
+            if (bitmap != null)
+            {
+                DescImage.Source = bitmap;
+                DescImage.Width = bitmap.PixelWidth;
+                DescImage.Height = bitmap.PixelHeight;
+                DescImage.Stretch = Stretch.Uniform;
+            }
             DescHeader.Text = element.Header;
             var textBlock = TextGen.GetText(element.Text!, element.Centered, DescScrollView.ActualWidth);
             DescScrollView.Content = textBlock;
@@ -34,11 +38,14 @@ namespace SolyankaGuide
 
         private void ShowDescription(Description desc)
         {
-            var bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/" + desc.ImagePath, UriKind.Absolute));
-            DescImage.Source = bitmap;
-            DescImage.Width = bitmap.PixelWidth;
-            DescImage.Height = bitmap.PixelHeight;
-            DescImage.Stretch = Stretch.Uniform;
+            BitmapImage? bitmap = ImageLoader.LoadImage(desc.ImagePath);
+            if (bitmap != null)
+            {
+                DescImage.Source = bitmap;
+                DescImage.Width = bitmap.PixelWidth;
+                DescImage.Height = bitmap.PixelHeight;
+                DescImage.Stretch = Stretch.Uniform;
+            }
             DescHeader.Text = desc.Header;
             var textBlock = TextGen.GetText(desc.Text!, desc.Centered, DescScrollView.ActualWidth);
             DescScrollView.Content = textBlock;

@@ -1,18 +1,27 @@
 [
 	{
 		"name": "ЧаВо",
-		"elementsPath": "faq.json"
+		"elementsPaths": [
+			"faq.json",
+			"faq2.json"
+		]
 	},
 	{
 		"name": "Квесты",
-		"elementsPath": "quests.json"
+		"elementsPaths": [
+			"quests.json"
+		]
 	},
 	{
 		"name": "Предметы",
-		"elementsPath": "items.json"
+		"elementsPaths": [
+			"items.json"
+		]
 	},
 	{
 		"name": "Механики",
-		"elementsPath": "mech.json"
+		"elementsPaths": [
+			"mech.json"
+		]
 	}
 ]

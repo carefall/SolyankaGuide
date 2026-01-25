@@ -7,7 +7,7 @@ namespace SolyankaGuide
     public partial class TitleControl : UserControl
     {
 
-        private Window window;
+        private readonly Window window;
 
         public TitleControl()
         {
@@ -32,8 +32,7 @@ namespace SolyankaGuide
 
         private void Drag(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && window.WindowState != WindowState.Minimized)
-                window.DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed && window.WindowState != WindowState.Minimized) window.DragMove();
         }
     }
 }

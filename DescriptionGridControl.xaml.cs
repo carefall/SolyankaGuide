@@ -1,6 +1,7 @@
 ﻿using SolyankaGuide.Internals;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace SolyankaGuide
 {
@@ -42,7 +43,8 @@ namespace SolyankaGuide
         private GriddedDescription BuildSubButtonUI(Description desc)
         {
             GriddedDescription gd = new();
-            gd.Image.Source = ImageLoader.LoadImage(desc.GridImagePath);
+            BitmapImage? bmi = ImageLoader.LoadImage(desc.GridImagePath);
+            if (bmi != null) gd.Image.Source = ImageLoader.LoadImage(desc.GridImagePath);
             gd.TileName.Text = desc.Name;
             gd.MouseDown += (s, e) => OpenDescription(desc);
             return gd;

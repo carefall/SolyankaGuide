@@ -14,9 +14,13 @@ namespace SolyankaGuide
                 MessageBox.Show(e.Exception.ToString(), "Unhandled UI Exception");
                 e.Handled = true;
             };
+            ImageLoader.SetupPlaceholder();
+            Logger.Setup();
+            Logger.Log("Startup", "App started!");
             bool shouldUpdate = GitHubAutoUpdate.Update().Result;
             if (shouldUpdate)
             {
+                Logger.Log("Startup", "Update requested");
                 RefreshUI?.Invoke();
             }
         }

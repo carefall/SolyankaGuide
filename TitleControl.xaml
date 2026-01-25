@@ -39,11 +39,17 @@
                 <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Гид по «Народной Солянке OGSR 2026»" Foreground="White" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            <TextBlock Text="Гид по «Народной Солянке OGSR 2026»" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman"  Foreground="White" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,0,0"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Content="—" Style="{StaticResource WindowControlButtonStyle}" Click="MinimizeButton"/>
-                <Button Content="☐" Style="{StaticResource WindowControlButtonStyle}" Click="ResizeButton"/>
-                <Button Content="✕" Style="{StaticResource WindowControlButtonStyle}" Click="CloseButton"/>
+                <Button FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" Style="{StaticResource WindowControlButtonStyle}" Click="MinimizeButton">
+                    <Path Data="M0,6 L12,6" Stroke="White" StrokeThickness="2" Width="14" Height="12"/>
+                </Button>
+                <Button FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" Style="{StaticResource WindowControlButtonStyle}" Click="ResizeButton">
+                    <Path Data="M1,1 L11,1 L11,11 L1,11 Z" Stroke="White" StrokeThickness="2" Fill="Transparent"/>
+                </Button>
+                <Button FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" Style="{StaticResource WindowControlButtonStyle}" Click="CloseButton">
+                    <Path Data="M0,0 L10,10 M10,0 L0,10" Stroke="White" StrokeThickness="2"/>
+                </Button>
             </StackPanel>
         </Grid>
     </Border>

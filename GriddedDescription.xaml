@@ -13,8 +13,8 @@
                     <RowDefinition Height="9*"/>
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="Image" Grid.Row="0" Source="/Assets/Images/background.jpg" HorizontalAlignment="Stretch"/>
-                <TextBlock x:Name="TileName" Grid.Row="1" Text="Принести флешку торговцу" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="Yellow" Background="#00000000"/>
+                <Image x:Name="Image" Grid.Row="0" Source="/Internals/Images/placeholder.png" HorizontalAlignment="Stretch"/>
+                <TextBlock x:Name="TileName" Grid.Row="1" Text="Принести флешку торговцу" HorizontalAlignment="Stretch" TextAlignment="Center" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" FontSize="24" FontWeight="Bold" Foreground="Yellow" Background="#00000000"/>
             </Grid>
         </Border>
     </Viewbox>

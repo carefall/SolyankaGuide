@@ -2,7 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net.Http;
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Resources;
@@ -52,9 +51,11 @@ namespace SolyankaGuide.Internals
             }
             if (updateFiles.Count > 0)
             {
+                Logger.Log("Updater", "Found new version.");
                 var result = MessageBox.Show("Найдена новая версия программы. Желаете установить?", "Автообновление", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
+                    Logger.Log("Updater", "Installing update.");
                     foreach (var item in updateFiles)
                     {
                         await DownloadFile(item.Key, item.Value);
@@ -68,11 +69,12 @@ namespace SolyankaGuide.Internals
 
         private static string GetToken()
         {
-            Uri uri = new Uri("pack://application:,,,/Internals/token.txt");
+            Uri uri = new("pack://application:,,,/Internals/token.txt");
             StreamResourceInfo info = Application.GetResourceStream(uri);
             using Stream stream = info.Stream;
             if (stream == null)
             {
+                Logger.Log("Updater", "No token provided.");
                 return "token";
             }
             using StreamReader reader = new(stream);
@@ -104,9 +106,10 @@ namespace SolyankaGuide.Internals
                 var response = await client.GetStringAsync(url);
                 return JsonConvert.DeserializeObject<List<GitHubContentItem>>(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось получить доступ в репозиторий. Обратитесь к разработчику гида.", "Автообновление", MessageBoxButton.OK);
+                Logger.Log("Updater", ex.ToString());
+                MessageBox.Show("Не удалось получить доступ в репозиторий. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
                 return null;
             }
         }
@@ -125,9 +128,10 @@ namespace SolyankaGuide.Internals
             {
                 return Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).Select(f => f.Replace("\\", "/")).ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ошибка проверки файлов на диске.", "Автообновление", MessageBoxButton.OK);
+                Logger.Log("Updater", ex.ToString());
+                MessageBox.Show("Ошибка проверки файлов на диске. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
                 return null;
             }
         }
@@ -141,9 +145,10 @@ namespace SolyankaGuide.Internals
                 Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
                 await File.WriteAllBytesAsync(destinationPath, data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось загрузить и записать файл с GitHub.", "Автообновление", MessageBoxButton.OK);
+                Logger.Log("Updater", ex.ToString());
+                MessageBox.Show("Не удалось загрузить и записать файл с GitHub. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
             }
         }
 
