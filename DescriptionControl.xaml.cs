@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Xml.Linq;
 
 namespace SolyankaGuide
 {
@@ -26,8 +25,16 @@ namespace SolyankaGuide
             if (bitmap != null)
             {
                 DescImage.Source = bitmap;
-                DescImage.Width = bitmap.PixelWidth;
-                DescImage.Height = bitmap.PixelHeight;
+                double h = bitmap.PixelHeight;
+                double w = bitmap.PixelWidth;
+                if (h != 360)
+                {
+                    double factor = h / 360;
+                    w /= factor;
+                    h = 360;
+                }
+                DescImage.Width = w;
+                DescImage.Height = h;
                 DescImage.Stretch = Stretch.Uniform;
             }
             DescHeader.Text = element.Header;

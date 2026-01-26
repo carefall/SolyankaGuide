@@ -1,0 +1,10 @@
+[
+	{
+		"internal_name": "faq",
+		"name": "ЧаВо",
+		"elementsPaths": [
+			"faq.json",
+			"faq2.json"
+		]
+	}
+]

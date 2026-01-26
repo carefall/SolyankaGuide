@@ -1,5 +1,6 @@
 [
 	{
+		"internal_name": "faq",
 		"name": "ЧаВо",
 		"elementsPaths": [
 			"faq.json",
@@ -7,18 +8,21 @@
 		]
 	},
 	{
+		"internal_name": "quests",
 		"name": "Квесты",
 		"elementsPaths": [
 			"quests.json"
 		]
 	},
 	{
+		"internal_name": "items",
 		"name": "Предметы",
 		"elementsPaths": [
 			"items.json"
 		]
 	},
 	{
+		"internal_name": "mech",
 		"name": "Механики",
 		"elementsPaths": [
 			"mech.json"
