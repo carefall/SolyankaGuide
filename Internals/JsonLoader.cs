@@ -42,7 +42,6 @@ namespace SolyankaGuide.Internals
             catch (Exception ex)
             {
                 Logger.Log("JsonLoader-Custom", ex.ToString());
-                MessageBox.Show($"Не удалось обработать файл пользовательских категорий. Обратитесь к разработчику гида. К обращению приложите файл log.txt", "Заполнение гида", MessageBoxButton.OK);
                 return null;
             }
             try
