@@ -14,7 +14,6 @@ namespace SolyankaGuide
             InitializeComponent();
             BGImage.Source = ImageLoader.LoadImage("background.jpg");
             OverrideImage.Source = BGImage.Source;
-            Locale.Init();
             Title = Locale.Get("title");
             UpdateYes.Text = Locale.Get("yes");
             UpdateNo.Text = Locale.Get("no");
@@ -35,14 +34,14 @@ namespace SolyankaGuide
             locked = true;
             UpdateStatus.Visibility = Visibility.Visible;
             UpdateSpinner.Visibility = Visibility.Visible;
-            bool shouldUpdate = await GitHubAutoUpdate.Update(UpdateStatus);
+            int updateStatus = await GitHubAutoUpdate.Update(UpdateStatus);
             locked = false;
-            if (shouldUpdate)
+            if (updateStatus == 1)
             {
                 Logger.Log("Startup", "Update installed");
                 RefreshUI?.Invoke();
             }
-            else
+            else if (updateStatus == 0)
             {
                 MessageBox.Show(Locale.Get("updates_not_found"), Locale.Get("update"), MessageBoxButton.OK);
             }

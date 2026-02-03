@@ -12,23 +12,38 @@ namespace SolyankaGuide.Internals
     internal class GitHubAutoUpdate
     {
 
-        public static async Task<bool> Update(TextBlock status)
+        public static async Task<int> Update(TextBlock status)
         {
             var localJsons = GetLocalFiles(@"Assets/Data");
             var localImages = GetLocalFiles(@"Assets/Images");
-            if (localJsons == null || localImages == null) return false;
+            if (localJsons == null || localImages == null)
+            {
+                MessageBox.Show(Locale.Get("disk_check_fail"), Locale.Get("update"), MessageBoxButton.OK);
+                return -1;
+            }
+            status.Text = Locale.Get("update_check");
             List<string> localFiles = new();
             localFiles.AddRange(localImages);
             localFiles.AddRange(localJsons);
+            Dictionary<string, string?>? hashes = await GetGitHubHashes("carefall", "SolyankaGuide", "Assets/hashes.json");
+            if (hashes == null || hashes.Count == 0)
+            {
+                MessageBox.Show(Locale.Get("update_time_exceeded"), Locale.Get("update"), MessageBoxButton.OK);
+                return -1;
+            }
+            status.Text = Locale.Get("update_file_check");
+            Dictionary<string, string> updateFiles = new();
             var githubJsons = await GetGitHubFolderContents("carefall", "SolyankaGuide", "Assets/Data");
             var githubImages = await GetGitHubFolderContents("carefall", "SolyankaGuide", "Assets/Images");
-            if (githubJsons == null || githubJsons.Count == 0 || githubImages == null || githubImages.Count == 0) return false;
+            if (githubJsons == null || githubJsons.Count == 0 || githubImages == null || githubImages.Count == 0) 
+            {
+                MessageBox.Show(Locale.Get("update_time_exceeded"), Locale.Get("update"), MessageBoxButton.OK);
+                return -1;
+            }
+            status.Text = Locale.Get("update_comparison");
             List<GitHubContentItem> githubFiles = new();
             githubFiles.AddRange(githubImages);
             githubFiles.AddRange(githubJsons);
-            Dictionary<string, string?>? hashes = await GetGitHubHashes("carefall", "SolyankaGuide", "Assets/hashes.json", GetToken());
-            if (hashes == null || hashes.Count == 0) return false;
-            Dictionary<string, string> updateFiles = new();
             foreach (var item in githubFiles)
             {
                 bool needDownload = false;
@@ -52,49 +67,45 @@ namespace SolyankaGuide.Internals
             }
             if (updateFiles.Count > 0)
             {
-                Logger.Log("Updater", "Found new version.");
-                var result = MessageBox.Show("Найдена новая версия программы. Желаете установить?", "Автообновление", MessageBoxButton.YesNo);
+                status.Text = Locale.Get("update_found_status");
+                Logger.Log("Updater", $"Found new version with changed files: {string.Join(" ", updateFiles.Keys)}.");
+                var result = MessageBox.Show(Locale.Get("update_found"), Locale.Get("update"), MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     Logger.Log("Updater", "Installing update.");
-                    foreach (var item in updateFiles)
+                    var keys = updateFiles.Keys.ToArray();
+                    for(int i = 0; i < keys.Length; i++)
                     {
-                        await DownloadFile(item.Key, item.Value);
+                        var key = keys[i];
+                        status.Text = Locale.Get("installation", $"{i + 1} / {keys.Length}");
+                        await DownloadFile(key, updateFiles[key]);
                     }
-                    return true;
+                    return 1;
                 }
-                return false;
+                return -1;
             }
-            return false;
+            return 0;
         }
 
-        private static string GetToken()
-        {
-            Uri uri = new("pack://application:,,,/Internals/token.txt");
-            StreamResourceInfo info = Application.GetResourceStream(uri);
-            using Stream stream = info.Stream;
-            if (stream == null)
-            {
-                Logger.Log("Updater", "No token provided.");
-                return "token";
-            }
-            using StreamReader reader = new(stream);
-            string content = reader.ReadToEnd();
-            return content;
-        }
-
-        private static async Task<Dictionary<string, string?>?> GetGitHubHashes(string owner, string repo, string path, string token)
+        private static async Task<Dictionary<string, string?>?> GetGitHubHashes(string owner, string repo, string path)
         {
             string url = $"https://raw.githubusercontent.com/{owner}/{repo}/main/{path}";
-            using HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("SolyankaGuide");
-            if (!string.IsNullOrEmpty(token))
+            using HttpClient client = new()
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("token", token);
+                Timeout = TimeSpan.FromSeconds(5)
+            };
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("SolyankaGuide");
+            try
+            {
+                string json = await client.GetStringAsync(url);
+                JObject obj = JObject.Parse(json);
+                return obj.Properties().ToDictionary(prop => prop.Name, prop => (string?)prop.Value);
             }
-            string json = await client.GetStringAsync(url);
-            JObject obj = JObject.Parse(json);
-            return obj.Properties().ToDictionary(prop => prop.Name, prop => (string?)prop.Value);
+            catch (Exception ex)
+            {
+                Logger.Log("Updater", ex.ToString());
+                return null;
+            }
         }
 
         public static async Task<List<GitHubContentItem>?> GetGitHubFolderContents(string owner, string repo, string path)
@@ -102,7 +113,10 @@ namespace SolyankaGuide.Internals
             try
             {
                 var url = $"https://api.github.com/repos/{owner}/{repo}/contents/{path}";
-                using var client = new HttpClient();
+                using var client = new HttpClient()
+                {
+                    Timeout = TimeSpan.FromSeconds(5)
+                };
                 client.DefaultRequestHeaders.UserAgent.ParseAdd("SolyankaGuide");
                 var response = await client.GetStringAsync(url);
                 return JsonConvert.DeserializeObject<List<GitHubContentItem>>(response);
@@ -110,7 +124,6 @@ namespace SolyankaGuide.Internals
             catch (Exception ex)
             {
                 Logger.Log("Updater", ex.ToString());
-                MessageBox.Show("Не удалось получить доступ в репозиторий. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
                 return null;
             }
         }
@@ -132,7 +145,6 @@ namespace SolyankaGuide.Internals
             catch (Exception ex)
             {
                 Logger.Log("Updater", ex.ToString());
-                MessageBox.Show("Ошибка проверки файлов на диске. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
                 return null;
             }
         }
@@ -141,7 +153,10 @@ namespace SolyankaGuide.Internals
         {
             try
             {
-                using var client = new HttpClient();
+                using var client = new HttpClient()
+                {
+                    Timeout = TimeSpan.FromSeconds(10)
+                };
                 var data = await client.GetByteArrayAsync(url);
                 Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
                 await File.WriteAllBytesAsync(destinationPath, data);
@@ -149,7 +164,7 @@ namespace SolyankaGuide.Internals
             catch (Exception ex)
             {
                 Logger.Log("Updater", ex.ToString());
-                MessageBox.Show("Не удалось загрузить и записать файл с GitHub. Обратитесь к разработчику гида. К обращению прикрепите log.txt", "Автообновление", MessageBoxButton.OK);
+                MessageBox.Show(Locale.Get("install_fail"), Locale.Get("update"), MessageBoxButton.OK);
             }
         }
 

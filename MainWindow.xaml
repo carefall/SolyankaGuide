@@ -29,18 +29,19 @@
         <Border Grid.Row="3" Background="#33FFFFFF"/>
         <local:GuideControl Grid.Row="4"/>
         <Image x:Name="OverrideImage" Grid.RowSpan="5" Stretch="UniformToFill"/>
-        <Grid x:Name="UpdateGrid" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="5" Visibility="Hidden" Width="270">
+        <Grid x:Name="UpdateGrid" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="5" Visibility="Hidden" Width="350">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
-            <Border Grid.RowSpan="4" Background="#CC000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="10"/>
+            <Border Grid.RowSpan="5" Background="#CC000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="10"/>
             <TextBlock x:Name="UpdateText" Grid.Row="0" Text="Update?" VerticalAlignment="Top" Margin="10,0,10,0" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" Foreground="White" TextWrapping="Wrap"/>
-
-            <Grid x:Name="UpdateSpinner" Width="100" Height="100" Grid.Row="1" Visibility="Hidden">
-                <Path Stroke="DodgerBlue" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M50,6 A44,44 0 0 1 94,50" RenderTransformOrigin="0.5,0.5">
+            <Grid Grid.Row="1"/>
+            <Grid x:Name="UpdateSpinner" Width="50" Height="50" Grid.Row="2" Visibility="Hidden">
+                <Path Stroke="Yellow" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M25,3 A22,22 0 0 1 47,25" RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>
                         <RotateTransform x:Name="Rotate"/>
                     </Path.RenderTransform>
@@ -55,12 +56,12 @@
                     </Path.Triggers>
                 </Path>
             </Grid>
-            <TextBlock x:Name="UpdateStatus" Visibility="Hidden" Grid.Row="2" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" Foreground="White" TextWrapping="Wrap"/>
-            <Grid Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 0, 0, 10" Background="Transparent" Height="70" Width="100">
+            <TextBlock x:Name="UpdateStatus" Visibility="Hidden" Grid.Row="3" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" Foreground="White" TextWrapping="Wrap"/>
+            <Grid Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 0, 0, 10" Background="Transparent" Height="70" Width="100">
                 <Image Source="/Internals/Images/btn.png" MouseDown="Update"/>
                 <TextBlock x:Name="UpdateYes" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" TextAlignment="Center" Foreground="Yellow" FontSize="24" FontWeight="Bold" IsHitTestVisible="False"/>
             </Grid>
-            <Grid Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Background="Transparent" Height="70" Width="100">
+            <Grid Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Background="Transparent" Height="70" Width="100">
                 <Image Source="/Internals/Images/btn.png" MouseDown="NoUpdate"/>
                 <TextBlock x:Name="UpdateNo" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" TextAlignment="Center" Foreground="Yellow" FontSize="24" FontWeight="Bold" IsHitTestVisible="False"/>
             </Grid>

@@ -15,6 +15,7 @@ namespace SolyankaGuide
             ImageLoader.SetupPlaceholder();
             Logger.Setup();
             Logger.Log("Startup", "App started!");
+            Locale.Init();
         }
     }
 }

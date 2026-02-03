@@ -49,7 +49,6 @@
 		<None Remove="Assets\Images\yt.png" />
 		<None Remove="Internals\Images\btn.png" />
 		<None Remove="Internals\Images\gidfix.png" />
-		<None Remove="Internals\token.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -225,6 +224,5 @@
 		  <CopyToOutputDirectory></CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Internals\Images\vk.png" />
-		<Resource Include="Internals\token.txt" />
 	</ItemGroup>
 </Project>
