@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -21,13 +20,13 @@ namespace SolyankaGuide.Internals
                 return -1;
             }
             status.Text = Locale.Get("update_texts");
-            var localJsons = GetLocalFiles(@"Assets/Data");
+            var localJsons = GetLocalFiles(@"Assets/Data", true);
             if (localJsons == null)
             {
                 MessageBox.Show(Locale.Get("disk_check_fail"), Locale.Get("update"), MessageBoxButton.OK);
                 return -1;
             }
-            var localImages = GetLocalFiles(@"Assets/Images");
+            var localImages = GetLocalFiles(@"Assets/Images", false);
             if (localImages == null)
             {
                 MessageBox.Show(Locale.Get("disk_check_fail"), Locale.Get("update"), MessageBoxButton.OK);
@@ -37,15 +36,21 @@ namespace SolyankaGuide.Internals
             Dictionary<string, string> filesToUpdate = new();
             foreach (string localFile in localJsons)
             {
-
-                string path = Path.Combine(@"Assets/Data", localFile);
-                if (!jsonsDict.ContainsKey(localFile)) filesToDelete.Add(path);
+                string path = "Assets/Data/" + localFile;
+                if (!jsonsDict.ContainsKey(localFile)) { 
+                    filesToDelete.Add(path);
+                    continue;
+                }
                 if (jsonsDict[localFile] != ComputeFileSha1(path)) filesToUpdate[localFile] = path;
             }
             foreach (string localFile in localImages)
             {
-                string path = Path.Combine(@"Assets/Images", localFile);
-                if (!jsonsDict.ContainsKey(localFile)) filesToDelete.Add(path);
+                string path = "Assets/Images/" + localFile;
+                if (!jsonsDict.ContainsKey(localFile))
+                {
+                    filesToDelete.Add(path);
+                    continue;
+                }
                 if (jsonsDict[localFile] != ComputeFileSha1(path)) filesToUpdate[localFile] = path;
             }
             foreach(string gitFile in jsonsDict.Keys)
@@ -116,11 +121,11 @@ namespace SolyankaGuide.Internals
             return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
         }
 
-        public static List<string>? GetLocalFiles(string folderPath)
+        public static List<string>? GetLocalFiles(string folderPath, bool json)
         {
             try
             {
-                return Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).Select(f => f.Replace("\\", "/")).ToList();
+                return Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).Select(f => f.Replace("\\", "/").Substring(json? "Assets/Data/".Length : "Assets/Images/".Length)).ToList();
             }
             catch (Exception ex)
             {

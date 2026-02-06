@@ -11,5 +11,7 @@ namespace SolyankaGuide.Internals
         public string[]? ElementsPaths { get; set; }
 
         public ToggleButton? RelatedButton { get; set; }
+
+        public bool Custom { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace SolyankaGuide
                 DescGridControl.Visibility = Visibility.Hidden;
                 return;
             }
-            Element[]? elements = JsonLoader.FillElements(category.ElementsPaths);
+            Element[]? elements = JsonLoader.FillElements(category);
             if (elements == null)
             {
                 Application.Current.Shutdown();

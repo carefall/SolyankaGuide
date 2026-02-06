@@ -36,7 +36,7 @@ namespace SolyankaGuide.Internals
             List<Category> categoriesList = categories.ToList();
             try
             {
-                json_custom = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Assets/categories_custom.json");
+                json_custom = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Assets/Custom/categories_custom.json");
                 if (json_custom == null) return null;
             }
             catch (Exception ex)
@@ -71,6 +71,7 @@ namespace SolyankaGuide.Internals
                     Logger.Log("JsonLoader-Custom", $"Category {category.Name} is overriden to {cCategory.Name} with elements: {string.Join(" ", cCategory.ElementsPaths)}.");
                     category.ElementsPaths = cCategory.ElementsPaths;
                     category.Name = cCategory.Name;
+                    category.Custom = true;
                 }
                 if (!found) // Если категория в итоге новая, то добавляем её к списку категорий
                 {
@@ -78,7 +79,8 @@ namespace SolyankaGuide.Internals
                     {
                         Internal_name = cCategory.Internal_name,
                         Name = cCategory.Name,
-                        ElementsPaths = cCategory.ElementsPaths
+                        ElementsPaths = cCategory.ElementsPaths,
+                        Custom = true
                     });
                     Logger.Log("JsonLoader-Custom", $"Adden category {cCategory.Name} with elements: {string.Join(" ", cCategory.ElementsPaths)}.");
                 }
@@ -86,9 +88,10 @@ namespace SolyankaGuide.Internals
             return categoriesList.ToArray();
         }
 
-        public static Element[]? FillElements(string[]? elementsPaths)
+        public static Element[]? FillElements(Category category)
         {
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var elementsPaths = category.ElementsPaths;
             if (elementsPaths == null) return null;
             List<Element> totalElements = new();
             foreach (var elementsPath in elementsPaths)
@@ -96,7 +99,7 @@ namespace SolyankaGuide.Internals
                 string? json;
                 try
                 {
-                    json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + $"/Assets/Data/{elementsPath}");
+                    json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Assets/" + (category.Custom? "Custom/" : "") + $"Data/{elementsPath}");
                 } catch (Exception ex)
                 {
                     Logger.Log("JsonLoader", ex.ToString());

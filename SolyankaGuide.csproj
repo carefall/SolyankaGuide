@@ -10,6 +10,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Assets\Custom\Data\faq_community.json" />
+		<None Remove="Assets\Custom\Data\faq_game.json" />
+		<None Remove="Assets\Custom\Data\faq_launcher.json" />
 		<None Remove="Assets\Data\categories.json" />
 		<None Remove="Assets\Images\actual.png" />
 		<None Remove="Assets\Images\background.jpg" />
@@ -57,6 +60,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="Assets\Custom\Data\faq_community.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Custom\Data\faq_game.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Custom\Data\faq_launcher.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Data\q_krest.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -283,9 +295,5 @@
 		  <CopyToOutputDirectory></CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Internals\Images\vk.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Assets\Custom\Data\" />
 	</ItemGroup>
 </Project>
