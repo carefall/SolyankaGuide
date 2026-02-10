@@ -16,6 +16,12 @@ namespace SolyankaGuide
         {
             InitializeComponent();
             CatergoriesControl.SwitchSidePanel += SwitchSidePanel;
+            TextGen.SwitchDescription += SwitchDescription;
+        }
+
+        private void SwitchDescription(string category, string elements, int elementIndex, int descriptionIndex)
+        {
+            // s
         }
 
         private void VKLink(object sender, RoutedEventArgs e)

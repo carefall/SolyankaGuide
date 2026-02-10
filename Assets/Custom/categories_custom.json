@@ -3,9 +3,9 @@
 		"internal_name": "faq",
 		"name": "ЧаВо",
 		"elementsPaths": [
-			"faq_launcher.json",
-			"faq_game.json",
-			"faq_community.json"
+			"faq_launcher",
+			"faq_game",
+			"faq_community"
 		]
 	}
 ]

@@ -3,37 +3,37 @@
 		"internal_name": "faq",
 		"name": "ЧаВо",
 		"elementsPaths": [
-			"faq_launcher.json",
-			"faq_game.json",
-			"faq_community.json"
+			"faq_launcher",
+			"faq_game",
+			"faq_community"
 		]
 	},
 	{
 		"internal_name": "quests",
 		"name": "Квесты",
 		"elementsPaths": [
-			"q_kordon.json",
-			"q_svalka.json",
-			"q_agro.json",
-			"q_bar.json",
-			"q_dolina.json",
-			"q_yantar.json",
-			"q_krest.json",
-			"q_atp.json"
+			"q_kordon",
+			"q_svalka",
+			"q_agro",
+			"q_bar",
+			"q_dolina",
+			"q_yantar",
+			"q_krest",
+			"q_atp"
 		]
 	},
 	{
 		"internal_name": "items",
 		"name": "Предметы",
 		"elementsPaths": [
-			"items.json"
+			"items"
 		]
 	},
 	{
 		"internal_name": "mech",
 		"name": "Механики",
 		"elementsPaths": [
-			"mech.json"
+			"mech"
 		]
 	}
 ]

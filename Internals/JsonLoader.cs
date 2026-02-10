@@ -99,7 +99,7 @@ namespace SolyankaGuide.Internals
                 string? json;
                 try
                 {
-                    json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Assets/" + (category.Custom? "Custom/" : "") + $"Data/{elementsPath}");
+                    json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Assets/" + (category.Custom? "Custom/" : "") + $"Data/{elementsPath}.json");
                 } catch (Exception ex)
                 {
                     Logger.Log("JsonLoader", ex.ToString());

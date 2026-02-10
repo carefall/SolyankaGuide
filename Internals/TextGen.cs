@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace SolyankaGuide.Internals
 {
@@ -12,6 +11,8 @@ namespace SolyankaGuide.Internals
 
     internal class TextGen
     {
+
+        public static event Action<string, string, int, int>? SwitchDescription;
 
         private static readonly SolidColorBrush spoilerColor = (SolidColorBrush) new BrushConverter().ConvertFromString("#1a1a1a")!;
 
@@ -44,7 +45,8 @@ namespace SolyankaGuide.Internals
             {
                 if (i != 0) tb.Inlines.Add("\n");
                 var line = lines[i];
-                bool hasHyper = Hyperlink(line, out string output, out string link, out string words);
+                bool hasHyper = Hyperlink(line, out string hOutput, out string hLink, out string hWords);
+                bool hasSwitchHyper = SwitchHyperlink(line, out string shOutput, out string[] shParts, out string shWords);
                 bool hasSpoiler = Spoiler(line, out string spoilerOutput, out string spoilerWords);
                 bool isImage = ImageInline(line, out InlineUIContainer? container);
                 if (isImage)
@@ -53,23 +55,48 @@ namespace SolyankaGuide.Internals
                 }
                 else if (hasHyper)
                 {
-                    int markerIndex = output.IndexOf(words);
-                    string before = output[..markerIndex];
-                    string after = output[(markerIndex + words.Length)..];
+                    int markerIndex = hOutput.IndexOf(hWords);
+                    string before = hOutput[..markerIndex];
+                    string after = hOutput[(markerIndex + hWords.Length)..];
                     var textBlock = new TextBlock
                     {
                         TextWrapping = TextWrapping.Wrap
                     };
                     if (!string.IsNullOrEmpty(before))
                         textBlock.Inlines.Add(new Run(before + " "));
-                    var hyperlink = new Hyperlink(new Run(words))
+                    var hyperlink = new Hyperlink(new Run(hWords))
                     {
                         Foreground = Brushes.Aqua,
                         TextDecorations = TextDecorations.Underline,
                     };
                     hyperlink.Click += (s, e) =>
                     {
-                        UrlOpener.OpenUrl(link);
+                        UrlOpener.OpenUrl(hLink);
+                    };
+                    textBlock.Inlines.Add(hyperlink);
+                    if (!string.IsNullOrEmpty(after))
+                        textBlock.Inlines.Add(new Run(after));
+                    tb.Inlines.Add(textBlock);
+                }
+                else if (hasSwitchHyper)
+                {
+                    int markerIndex = shOutput.IndexOf(shWords);
+                    string before = shOutput[..markerIndex];
+                    string after = shOutput[(markerIndex + shWords.Length)..];
+                    var textBlock = new TextBlock
+                    {
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                    if (!string.IsNullOrEmpty(before))
+                        textBlock.Inlines.Add(new Run(before + " "));
+                    var hyperlink = new Hyperlink(new Run(shWords))
+                    {
+                        Foreground = Brushes.Aqua,
+                        TextDecorations = TextDecorations.Underline,
+                    };
+                    hyperlink.Click += (s, e) =>
+                    {
+                        SwitchDescription?.Invoke(shParts[0], shParts[1], int.Parse(shParts[2]), shParts.Length == 4? int.Parse(shParts[3]) : 0);
                     };
                     textBlock.Inlines.Add(hyperlink);
                     if (!string.IsNullOrEmpty(after))
@@ -122,6 +149,64 @@ namespace SolyankaGuide.Internals
             }
             return tb;
 
+        }
+
+        private static bool SwitchHyperlink(string input, out string output, out string[] parts, out string wordsToReplace)
+        {
+            string pattern = @"%gl=(.*?)%(.*?)%egl%";
+            Regex regex = new(pattern);
+            Match match = regex.Match(input);
+            if (match.Success)
+            {
+                string firstGroup = match.Groups[1].Value;
+                parts = firstGroup.Split('/');
+                if (parts.Length > 4 || parts.Length < 3)
+                {
+                    parts = Array.Empty<string>();
+                    wordsToReplace = "";
+                    output = input;
+                    return false;
+                }
+                if (!int.TryParse(parts[2], out int eId))
+                {
+                    parts = Array.Empty<string>();
+                    wordsToReplace = "";
+                    output = input;
+                    return false;
+                }
+                if (eId < 0)
+                {
+                    parts = Array.Empty<string>();
+                    wordsToReplace = "";
+                    output = input;
+                    return false;
+                }
+                if (parts.Length == 4)
+                {
+                    if (!int.TryParse(parts[3], out int dId))
+                    {
+                        parts = Array.Empty<string>();
+                        wordsToReplace = "";
+                        output = input;
+                        return false;
+                    }
+                    if (dId < 0)
+                    {
+                        parts = Array.Empty<string>();
+                        wordsToReplace = "";
+                        output = input;
+                        return false;
+                    }
+                }
+                string secondGroup = match.Groups[2].Value;
+                output = input.Replace("%egl%", "").Replace($"%gl={firstGroup}%", "");
+                wordsToReplace = secondGroup;
+                return true;
+            }
+            parts = Array.Empty<string>();
+            wordsToReplace = "";
+            output = input;
+            return false;
         }
 
         private static bool ImageInline(string input, out InlineUIContainer? output)
