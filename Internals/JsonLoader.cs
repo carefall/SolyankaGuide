@@ -85,15 +85,34 @@ namespace SolyankaGuide.Internals
                     Logger.Log("JsonLoader-Custom", $"Adden category {cCategory.Name} with elements: {string.Join(" ", cCategory.ElementsPaths)}.");
                 }
             }
+            for (int i = categoriesList.Count -1; i >= 0; i--)
+            {
+                Category category = categoriesList[i];
+                if (category.ElementsPaths == null)
+                {
+                    Logger.Log("JsonLoader", $"Category {category.Name} has no elements, ignoring.");
+                    MessageBox.Show(Locale.Get("empty_category", category.Name!), Locale.Get("guide_fill"), MessageBoxButton.OK);
+                    categoriesList.Remove(category);
+                    continue;
+                }
+                var lists = FillElements(category);
+                if (lists == null)
+                {
+                    Logger.Log("JsonLoader", $"Category {category.Name} loaded no elements from lists, ignoring.");
+                    MessageBox.Show(Locale.Get("empty_category_lists", category.Name!), Locale.Get("guide_fill"), MessageBoxButton.OK);
+                    categoriesList.Remove(category);
+                    continue;
+                }
+                category.Lists = lists;
+            }
             return categoriesList.ToArray();
         }
 
-        public static Element[]? FillElements(Category category)
+        public static ElementList[]? FillElements(Category category)
         {
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var elementsPaths = category.ElementsPaths;
-            if (elementsPaths == null) return null;
-            List<Element> totalElements = new();
+            var elementsPaths = category.ElementsPaths!;
+            List<ElementList> totalElements = new();
             foreach (var elementsPath in elementsPaths)
             {
                 string? json;
@@ -112,10 +131,14 @@ namespace SolyankaGuide.Internals
                     Element[]? elements = JsonSerializer.Deserialize<Element[]>(json, options);
                     if (elements == null)
                     {
-                        Logger.Log("JsonLoader", $"Category {elementsPath} is missing elements");
+                        Logger.Log("JsonLoader", $"Elements list {elementsPath} is missing elements");
                         continue;
                     }
-                    totalElements.AddRange(elements);
+                    totalElements.Add(new ElementList
+                    {
+                        Name = elementsPath,
+                        Elements = elements
+                    });
                 }
                 catch (Exception ex)
                 {

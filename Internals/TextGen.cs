@@ -12,7 +12,7 @@ namespace SolyankaGuide.Internals
     internal class TextGen
     {
 
-        public static event Action<string, string, int, int>? SwitchDescription;
+        public static event Action<string, int, int, int>? SwitchDescription;
 
         private static readonly SolidColorBrush spoilerColor = (SolidColorBrush) new BrushConverter().ConvertFromString("#1a1a1a")!;
 
@@ -96,7 +96,7 @@ namespace SolyankaGuide.Internals
                     };
                     hyperlink.Click += (s, e) =>
                     {
-                        SwitchDescription?.Invoke(shParts[0], shParts[1], int.Parse(shParts[2]), shParts.Length == 4? int.Parse(shParts[3]) : 0);
+                        SwitchDescription?.Invoke(shParts[0], int.Parse(shParts[1]), int.Parse(shParts[2]), shParts.Length == 4? int.Parse(shParts[3]) : 0);
                     };
                     textBlock.Inlines.Add(hyperlink);
                     if (!string.IsNullOrEmpty(after))
@@ -161,6 +161,20 @@ namespace SolyankaGuide.Internals
                 string firstGroup = match.Groups[1].Value;
                 parts = firstGroup.Split('/');
                 if (parts.Length > 4 || parts.Length < 3)
+                {
+                    parts = Array.Empty<string>();
+                    wordsToReplace = "";
+                    output = input;
+                    return false;
+                }
+                if (!int.TryParse(parts[1], out int epId))
+                {
+                    parts = Array.Empty<string>();
+                    wordsToReplace = "";
+                    output = input;
+                    return false;
+                }
+                if (epId < 0)
                 {
                     parts = Array.Empty<string>();
                     wordsToReplace = "";

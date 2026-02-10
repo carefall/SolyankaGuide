@@ -11,7 +11,7 @@ namespace SolyankaGuide
         public DescriptionControl()
         {
             InitializeComponent();
-            GuideControl.ShowDescription += ShowDescription;
+            GuideControl.ShowElement += ShowDescription;
             DescriptionGridControl.ShowDescription += ShowDescription;
             DescScrollView.SizeChanged += (s, e) =>
             {
@@ -21,7 +21,7 @@ namespace SolyankaGuide
 
         private void ShowDescription(Element element)
         {
-            BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePaths[0]);
+            BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePaths != null? element.ImagePaths[0] : "");
             if (bitmap != null)
             {
                 DescImage.Source = bitmap;
