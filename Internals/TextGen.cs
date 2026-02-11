@@ -63,7 +63,7 @@ namespace SolyankaGuide.Internals
                         TextWrapping = TextWrapping.Wrap
                     };
                     if (!string.IsNullOrEmpty(before))
-                        textBlock.Inlines.Add(new Run(before + " "));
+                        textBlock.Inlines.Add(new Run(before));
                     var hyperlink = new Hyperlink(new Run(hWords))
                     {
                         Foreground = Brushes.Aqua,
@@ -88,11 +88,11 @@ namespace SolyankaGuide.Internals
                         TextWrapping = TextWrapping.Wrap
                     };
                     if (!string.IsNullOrEmpty(before))
-                        textBlock.Inlines.Add(new Run(before + " "));
+                        textBlock.Inlines.Add(new Run(before));
                     var hyperlink = new Hyperlink(new Run(shWords))
                     {
-                        Foreground = Brushes.Aqua,
-                        TextDecorations = TextDecorations.Underline,
+                        Foreground = Brushes.Yellow,
+                        FontWeight = FontWeights.Bold
                     };
                     hyperlink.Click += (s, e) =>
                     {

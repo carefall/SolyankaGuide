@@ -6,7 +6,7 @@ namespace SolyankaGuide
     public partial class MainWindow : Window
     {
 
-        public static Action? RefreshUI;
+        public static Action? SetupUI;
         private bool locked = false;
 
         public MainWindow()
@@ -27,7 +27,7 @@ namespace SolyankaGuide
             Logger.Log("Updater", "Update check cancelled.");
             UpdateGrid.Visibility = Visibility.Hidden;
             OverrideImage.Visibility = Visibility.Hidden;
-            RefreshUI?.Invoke();
+            SetupUI?.Invoke();
         }
 
         private async void Update(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -49,7 +49,7 @@ namespace SolyankaGuide
             }
             UpdateGrid.Visibility = Visibility.Hidden;
             OverrideImage.Visibility = Visibility.Hidden;
-            RefreshUI?.Invoke();
+            SetupUI?.Invoke();
         }
     }
 }

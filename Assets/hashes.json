@@ -1,18 +1,19 @@
 {
   "jsons": {
-    "categories.json": "7272a25bda9ccaf01935caea96655e0baba7f267",
-    "faq_community.json": "b3b8d2d48b619e09c0f568714a679cd0c4d82a82",
+    "categories.json": "b51af99ef2343d3b5853e925d3e432fce6123a66",
+    "faq_community.json": "38e25b4a8b72fe6ef034114a4dbafdc5bb5b51b5",
     "faq_game.json": "ee28ce6ed55d3f2464c6d7cbea343cf229971275",
     "faq_launcher.json": "3e893e2a6abc46e85767a432125910cd9e831939",
-    "items.json": "5807d4bd7795afe3cfcc6c63aa1db26f5e26e4fb",
-    "mech.json": "d0d94384a6d7de5c8ce7166d299f2907f606515b",
+    "items.json": "46a7d5079cc71a8e8c8278c98779adf4694d7ddf",
+    "mech.json": "f13a832563c30302d85b4610a8a5ae8a159bfc66",
     "q_agro.json": "4076ab95bbcba648262f7e29c542b7a74e393c6b",
-    "q_bar.json": "8160cc817c9d1eac57c740e2a9520ef8adedcffd",
-    "q_dolina.json": "11740e1fbc24ddf6b623e7f090c7597b33c5f1aa",
-    "q_kordon.json": "2512095289838267428677fa3ec860a07a94a7d7",
-    "q_krest.json": "64adcf68bb3f14084f3b9d2a13ea56503b07983e",
-    "q_svalka.json": "06f4cbcf52db0fadb18abc9644ab6a9453642945",
-    "q_yantar.json": "95b450b152642d42c61186d4aa9624e7a892b295"
+    "q_atp.json": "2ffed398ea6353e24fa3f19e500c9d631e500c00",
+    "q_bar.json": "dc181447bd3836aca326b1a98a838d162fecbb82",
+    "q_dolina.json": "4540ef0aaa6600a249ea6a75d4c3d2a86bf36d8e",
+    "q_kordon.json": "0dcef539ea80970c0cf62fa1d7d23a130e2c8382",
+    "q_krest.json": "09cf950bedfed0156c731a01ed5342fecd9ad3ef",
+    "q_svalka.json": "583365b3beb2d3bd498477a9c3b9e17653a1c140",
+    "q_yantar.json": "7e69e77f94cb6edb884eb9fad0f0ce110263dd0c"
   },
   "images": {
     "actual.png": "a3e2b83a08e16c0eb90430110fd775fd676fb1e2",

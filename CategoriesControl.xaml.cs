@@ -11,22 +11,23 @@ namespace SolyankaGuide
 
         private ToggleButton? currentButton = null;
         internal static event Action<Category?>? SwitchSidePanel;
+        internal static Category[] categories = Array.Empty<Category>();
+        internal static event Action<Category, Element, Description?>? SwitchSidePanelWithHyper;
+
+        internal static Category? GetCategory(string internalName)
+        {
+            foreach (var category in categories)
+            {
+                if (category.Internal_name == internalName) return category;
+            }
+            return null;
+        }
 
         public CatergoriesControl()
         {
             InitializeComponent();
-            MainWindow.RefreshUI += RefreshCategories;
-        }
-
-        private void RefreshCategories()
-        {
-            Category[]? categories = JsonLoader.FillCategories();
-            if (categories == null)
-            {
-                Application.Current.Shutdown();
-                return;
-            }
-            SetupPanel(categories);
+            MainWindow.SetupUI += SetupCategories;
+            GuideControl.OpenElementWithHyper += OpenCategoryWithHyper;
         }
 
         private void OpenCategory(Category category)
@@ -48,6 +49,29 @@ namespace SolyankaGuide
                 currentButton = category.RelatedButton;
             }
             SwitchSidePanel?.Invoke(category);
+        }
+
+        private void OpenCategoryWithHyper(Category category, Element element, Description? description)
+        {
+            if (currentButton != category.RelatedButton)
+            {
+                currentButton!.IsChecked = false;
+                currentButton = category.RelatedButton;
+                currentButton!.IsChecked = true;
+            }
+            SwitchSidePanelWithHyper?.Invoke(category, element, description);
+        }
+
+        private void SetupCategories()
+        {
+            var cats = JsonLoader.FillCategories();
+            if (cats == null)
+            {
+                Application.Current.Shutdown();
+                return;
+            }
+            categories = cats;
+            SetupPanel(categories);
         }
 
         private void SetupPanel(Category[] categories)
