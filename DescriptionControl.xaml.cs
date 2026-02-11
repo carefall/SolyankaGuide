@@ -11,6 +11,7 @@ namespace SolyankaGuide
         public DescriptionControl()
         {
             InitializeComponent();
+            GuideControl.ShowDescription += ShowDescription;
             GuideControl.ShowElement += ShowDescription;
             DescriptionGridControl.ShowDescription += ShowDescription;
             DescScrollView.SizeChanged += (s, e) =>

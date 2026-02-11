@@ -1,4 +1,5 @@
 ﻿using SolyankaGuide.Internals;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -22,7 +23,7 @@ namespace SolyankaGuide
             TextGen.SwitchDescription += SwitchDescription;
         }
 
-        private void SwitchDescription(string category, int pathIndex, int elementIndex, int descriptionIndex)
+        private void SwitchDescription(string category, string listName, int elementIndex, int descriptionIndex)
         {
             Category? cat = CatergoriesControl.GetCategory(category);
             if (cat == null)
@@ -31,19 +32,20 @@ namespace SolyankaGuide
                 MessageBox.Show(Locale.Get("category_not_found"), Locale.Get("guide"), MessageBoxButton.OK);
                 return;
             }
-            if (pathIndex >= cat.Lists!.Length)
+            var list = cat.Lists!.FirstOrDefault(e => e!.Name == listName, null);
+            if (list == null)
             {
-                Logger.Log("Guide", $"Hyperlink was directing to non-existing element path with index {pathIndex} in category {category}");
+                Logger.Log("Guide", $"Hyperlink was directing to non-existing element list {listName} in category {category}");
                 MessageBox.Show(Locale.Get("category_path_not_found"), Locale.Get("guide"), MessageBoxButton.OK);
                 return;
             }
-            if (elementIndex >= cat.Lists[pathIndex].Elements!.Length)
+            if (elementIndex >= list.Elements!.Length)
             {
-                Logger.Log("Guide", $"Hyperlink was directing to non-existing element with index {elementIndex} in list {cat.Lists[pathIndex].Name} in category {category}");
+                Logger.Log("Guide", $"Hyperlink was directing to non-existing element with index {elementIndex} in list {list.Name} in category {category}");
                 MessageBox.Show(Locale.Get("path_element_not_found"), Locale.Get("guide"), MessageBoxButton.OK);
                 return;
             }
-            Element element = cat.Lists[pathIndex].Elements![elementIndex];
+            Element element = list.Elements![elementIndex];
             if (element.Descriptions == null)
             {
                 OpenElementWithHyper?.Invoke(cat, element, null);
@@ -52,7 +54,7 @@ namespace SolyankaGuide
             {
                 if (descriptionIndex >= element.Descriptions.Length)
                 {
-                    Logger.Log("Guide", $"Hyperlink was directing to non-existing description of element {element.Name} in list {cat.Lists[pathIndex].Name} in category {category}");
+                    Logger.Log("Guide", $"Hyperlink was directing to non-existing description of element {element.Name} in list {list.Name} in category {category}");
                     MessageBox.Show(Locale.Get("element_description_not_found"), Locale.Get("guide"), MessageBoxButton.OK);
                     return;
                 }
