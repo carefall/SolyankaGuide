@@ -10,7 +10,7 @@
                 "name": "Телепорт военного",
                 "header": "Телепорт военного",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "По ходу выполнения заданий Кости на тайники Крест выдаст задание \"Телепортёр\" на поиск военного.",
@@ -22,7 +22,7 @@
                 "name": "Кресотовый поход",
                 "header": "Крестовый поход(за артефактами)",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "При первой встрече выдаёт побочное задание на поиск 15 артефактов:",

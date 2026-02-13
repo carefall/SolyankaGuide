@@ -13,9 +13,13 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="DescImage" VerticalAlignment="Top" Grid.Row="0"/>
+            <Image x:Name="DescImage" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Center"
+                   Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource HalfConverter}}"/>
             <TextBlock x:Name="DescHeader" Grid.Row="1" HorizontalAlignment="Stretch" Foreground="Yellow" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" FontSize="24" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
             <ScrollViewer x:Name="DescScrollView" Grid.Row="2" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            <Button x:Name="BackButton" Height="75" Width="75" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="BackButton_Click" BorderThickness="0" Foreground="Transparent">
+                <Image Source="/Internals/Images/arrow.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill" IsMouseDirectlyOverChanged="Image_IsMouseDirectlyOverChanged"/>
+            </Button>
         </Grid>
     </Border>
 </UserControl>

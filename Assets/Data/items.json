@@ -8,7 +8,7 @@
             "В разделах гида мы постарались разбить предметы на категории и подписать их значимость."
         ],
         "centered": false,
-        "imagePaths": ["items.png"],
+        "imagePath": "items.png",
         "descriptions": null
     },
     {
@@ -27,7 +27,7 @@
             "- Бронежилет Стрелка"
         ],
         "centered": false,
-        "imagePaths": ["items.png"],
+        "imagePath": "items.png",
         "descriptions": null
     },
     {
@@ -37,7 +37,7 @@
             "Хлеб, Колбаса, Консервы, Пиво \"Балтика\", Энергетики, Фляга воды - смело продаём."
         ],
         "centered": false,
-        "imagePaths": ["items.png"],
+        "imagePath": "items.png",
         "descriptions": null
     }
 ]

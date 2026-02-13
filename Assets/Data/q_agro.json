@@ -10,7 +10,7 @@
                 "name": "Крот",
                 "header": "ПДА Крота - Побочное",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "После спасения Крот выдаёт квест на поиск его ПДА в лощине.",
@@ -22,7 +22,7 @@
                 "name": "Адреналин",
                 "header": "Задания Адреналина",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["car.png"],
+                "imagePath": "car.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задания \"Мощь и отвага\" на доставку %s%Минигана с Янтаря(побочное)%es% и \"Компьютерный диск\" на доставку диска с АТП",

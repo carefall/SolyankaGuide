@@ -60,6 +60,7 @@
 		<None Remove="Assets\Images\when.png" />
 		<None Remove="Assets\Images\yt.png" />
 		<None Remove="Assets\Images\zvezd.png" />
+		<None Remove="Internals\Images\arrow.png" />
 		<None Remove="Internals\Images\btn.png" />
 		<None Remove="Internals\Images\gidfix.png" />
 	</ItemGroup>
@@ -191,6 +192,7 @@
 		<Content Include="Assets\Images\Characters\sidor.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Resource Include="Internals\Images\arrow.png" />
 		<Resource Include="Internals\Images\btn.png" />
 		<Resource Include="Internals\Images\placeholder.png">
 		  <CopyToOutputDirectory></CopyToOutputDirectory>

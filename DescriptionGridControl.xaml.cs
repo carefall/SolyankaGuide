@@ -14,6 +14,7 @@ namespace SolyankaGuide
         {
             InitializeComponent();
             GuideControl.ShowGrid += ShowGrid;
+            DescriptionControl.ShowGrid += () => Visibility = Visibility.Visible;
         }
 
         private void ShowGrid(Element element)

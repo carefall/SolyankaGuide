@@ -7,8 +7,8 @@
             "Все потребности Меченого со степенью удовлетворения, а также отметка о безопасности убежища при выбросе, отображены на интерфейсе.",
             "Для сна Меченому нужен спальный мешок. Если долго не спать, то рано или поздно Меченый сам свалится с ног."
         ],
-	    "centered": false,
-        "imagePaths": ["needs.png"],
+        "centered": false,
+        "imagePath": "needs.png",
         "descriptions": null
     },
     {
@@ -19,22 +19,22 @@
             "Если Меченый перегружен, то он не сможет бегать.",
             "Если переполнен рюкзак, помимо отсутствия бега добавляется невозможность взять в руки оружие."
         ],
-	    "centered": false,
-        "imagePaths": ["volume.png"],
+        "centered": false,
+        "imagePath": "volume.png",
         "descriptions": null
     },
     {
         "name": "Автомобили",
         "header": "",
         "text": null,
-	    "centered": false,
+        "centered": false,
         "imagePaths": null,
         "descriptions": [
             {
                 "name": "Экскурс",
                 "header": "Экскурс",
                 "gridImagePath": "car.png",
-                "imagePaths": ["car.png"],
+                "imagePath": "car.png",
                 "centered": false,
                 "text": [
                     "В разных частях Зоны теперь разбросаны автомобили.",
@@ -46,7 +46,7 @@
                 "name": "Управление",
                 "header": "Управление",
                 "gridImagePath": "kon.png",
-                "imagePaths": [ "kon.png" ],
+                "imagePath": "kon.png",
                 "centered": false,
                 "text": [
                     "Для того, чтобы пользоваться автомобилем, нужно открыть водительскую дверь и нажать F на сиденье.",
@@ -61,7 +61,7 @@
                 "name": "Багажник",
                 "header": "Багажник",
                 "gridImagePath": "storage.png",
-                "imagePaths": ["storage.png"],
+                "imagePath": "storage.png",
                 "centered": false,
                 "text": [
                     "Каждая машина имеет багажник. Багажник, в свою очередь, имеет объём, поэтому загрузить туда весь ящик Меченого не выйдет.",
@@ -80,8 +80,8 @@
             "За выполнение циклических заданий награда теперь получается через специальное окно.",
             "Часть награды можно получить деньгами, а часть - предметами."
         ],
-	    "centered": false,
-        "imagePaths": ["cycle.png"],
+        "centered": false,
+        "imagePath": "cycle.png",
         "descriptions": null
     },
     {
@@ -106,8 +106,8 @@
             "Восточная Припять(Прачечная)",
             "Юпитер(Янов)"
         ],
-	    "centered": true,
-        "imagePaths": ["travel.png"],
+        "centered": true,
+        "imagePath": "travel.png",
         "descriptions": null
     },
     {
@@ -124,8 +124,8 @@
             "Юпитер - Шурик Фрост(На Янове, по сюжету)",
             "Восточная Припять - Гектор(В прачечной)"
         ],
-	    "centered": true,
-        "imagePaths": [ "upgrades.png" ],
+        "centered": true,
+        "imagePath": "upgrades.png",
         "descriptions": null
     },
     {
@@ -136,8 +136,8 @@
             "Кому не заходит - проходим мимо, лишних вопросов не задаем, каналы не захламляем. Есть версия 2020 года без магазинов. Подобные вопросы будут просто игнорироваться.",
             "Советуем хотя бы попробовать, ибо система в игре не такая, как в других модах с магазинами - более упрощенная и удобная."
         ],
-	    "centered": false,
-        "imagePaths": ["mags.png"],
+        "centered": false,
+        "imagePath": "mags.png",
         "descriptions": null
     },
     {
@@ -146,8 +146,8 @@
         "text": [
             "Анимации действий теперь тоже неотключаемые, но в будущем, возможно, вернётся переключатель."
         ],
-	    "centered": false,
-        "imagePaths": ["troll.png"],
+        "centered": false,
+        "imagePath": "troll.png",
         "descriptions": null
     }
 ]

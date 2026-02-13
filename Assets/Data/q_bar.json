@@ -10,7 +10,7 @@
                 "name": "Бармен",
                 "header": "Сейф Бармена",
                 "gridImagePath": "barmen.png",
-                "imagePaths": ["barmen.png"], 
+                "imagePath": "barmen.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Подрезать заказ\".",
@@ -22,7 +22,7 @@
                 "name": "Клюв",
                 "header": "Ружьё Клюва",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Фамильное ружьё\" на доставку ружья из Лощины.",
@@ -33,7 +33,7 @@
                 "name": "Бром",
                 "header": "Кейс Брома",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Сейф в лощине\" на доставку кейса.",
@@ -44,7 +44,7 @@
                 "name": "Осведомитель",
                 "header": "Осведомитель",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Тестовый рецепт\" на проверку рецепта варки артефакта.",
@@ -55,7 +55,7 @@
                 "name": "Доцент",
                 "header": "Детекторы Доцента",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Улучшает ПДА Меченого, добавляя детекторы кровососов, контролёров и псевдогигантов.",
@@ -69,7 +69,7 @@
                 "name": "Арни",
                 "header": "Пистолеты Арни",
                 "gridImagePath": "arni.png",
-                "imagePaths": ["arni.png"], 
+                "imagePath": "arni.png",
                 "centered": false,
                 "text": [
                     "После победы во всех боях на Арене помимо солидной суммы можно получить у Арни задание \"Тест пистолетов\".",
@@ -82,7 +82,7 @@
                 "name": "Пличко",
                 "header": "Сержант Пличко",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Необычный изумруд\" на поиск артефакта в Пещере.",
@@ -94,7 +94,7 @@
                 "name": "Гарик",
                 "header": "Гарик",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "После посещения Меченым X-16 выдаёт задание \"Сладкая жизнь\" на поиск коробки сладостей.",
@@ -106,7 +106,7 @@
                 "name": "Иванцов",
                 "header": "Капитан Иванцов",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Глянцевый журнал\" на доставку Плейбоя в обмен на винтовку ДВЛ-10.",
@@ -117,7 +117,7 @@
                 "name": "Петренко",
                 "header": "Полковник Петренко",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание на доставку артефакта \"Вспышка\" в обмен на %s%способ преобразования этого артефакта в \"Лунный Свет\"%es%.",
@@ -134,7 +134,7 @@
                 "name": "Воронин",
                 "header": "Генерал Воронин",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание на доставку модифицированной винтовки M4A1 с Армейских Складов.",
@@ -149,7 +149,7 @@
                 "name": "Долговязый",
                 "header": "Фляга Долговязого",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "В ходе выполнения задания Петренко на поиск %gl=quests/q_bar/0/9%фляги%egl% просит 50000 рублей, 5 вывертов и 10 микросхем с Кордона за информацию о фляжке.",
@@ -160,7 +160,7 @@
                 "name": "Захар",
                 "header": "Захар",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "После доставки %gl=quests/q_agro/0/1%диска%egl% Адреналину появляется задание \"Беседа с Захаром\".",
@@ -180,7 +180,7 @@
     {
         "name": "Фримен",
         "header": "Фримен",
-        "imagePaths": ["house.png"], 
+        "imagePath": "house.png",
         "centered": false,
         "text": [
             "!! После выполнения побочных заданий ветка Фримена перетекает в сюжет Солянки !!",

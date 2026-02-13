@@ -10,7 +10,7 @@
                 "name": "Сахаров",
                 "header": "Сахаров",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После посещения Меченым X-18 у Сахарова появляется диалог, начинающий квест \"Рубеж\" по отключению деактиватора артефактов в лаборатории.",
@@ -32,7 +32,7 @@
                 "name": "Майор Батя",
                 "header": "Майор Батя",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После разговора Меченого с Сахаровым на Янтарь прилетает военный - Майор Батя",
@@ -44,7 +44,7 @@
                 "name": "Круглов",
                 "header": "Круглов",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После посещения Меченым X-16 выдаёт задание на поиск декодера в лаборатории X-16.",
@@ -68,7 +68,7 @@
                 "name": "Введение",
                 "header": "Введение",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Ветвь начинается с квестов:",
@@ -84,7 +84,7 @@
                 "name": "Фримен",
                 "header": "Фримен",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "В процессе..."
@@ -94,7 +94,7 @@
                 "name": "Сахаров",
                 "header": "Сахаров",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание по поиску ПДА Призрака в X-16.",
@@ -106,7 +106,7 @@
                 "name": "Круглов",
                 "header": "Круглов",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После посещения Меченым X-16 выдаёт задание \"Дневник призрака\" на поиск дневника на Янтаре.",
@@ -118,7 +118,7 @@
                 "name": "Бармен",
                 "header": "Бармен",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После доставки дневника призрака Круглову, у Бармена появляется диалог по поводу Призрака.",
@@ -130,7 +130,7 @@
                 "name": "Воронин",
                 "header": "Экза для Воронина",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "За информацию о Клыке Воронин просит принести ему маскировочный экзоскелет с АТП.",
@@ -142,7 +142,7 @@
                 "name": "Осведомитель",
                 "header": "ПДА Тирана для Осведомителя",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "После выполнения задания Воронина на АТП получаем наводку на Осведомителя.",
@@ -154,7 +154,7 @@
                 "name": "Лысый",
                 "header": "Клад для Лысого",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "При первом посещении блокпоста Долга на Свалке Меченому приходит сообщение о поиске добровольца для добычи клада.",
@@ -169,7 +169,7 @@
                 "name": "Сейф и Шкаткулка 1",
                 "header": "Сейф и Шкатулка - Пещера",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "При первой в встрече с Шахтёром в пещере тот выдаёт задание на поиск книги в Забытом Лесу.",
@@ -185,7 +185,7 @@
                 "name": "Сейф и Шкатулка 2",
                 "header": "Сейф и Шкатулка - Лабиринт",
                 "gridImagePath": "saharov.png",
-                "imagePaths": ["saharov.png"], 
+                "imagePath": "saharov.png",
                 "centered": false,
                 "text": [
                     "Фима рассказывает Меченому о бессмертном монолитовце и шкатулке с сейфом.",

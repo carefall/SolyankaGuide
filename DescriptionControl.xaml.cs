@@ -8,6 +8,9 @@ namespace SolyankaGuide
 {
     public partial class DescriptionControl : UserControl
     {
+
+        public static event Action ShowGrid;
+
         public DescriptionControl()
         {
             InitializeComponent();
@@ -22,21 +25,12 @@ namespace SolyankaGuide
 
         private void ShowDescription(Element element)
         {
-            BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePaths != null? element.ImagePaths[0] : "");
+            BackButton.Visibility = Visibility.Hidden;
+            BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePath);
             if (bitmap != null)
             {
                 DescImage.Source = bitmap;
-                double h = bitmap.PixelHeight;
-                double w = bitmap.PixelWidth;
-                if (h != 360)
-                {
-                    double factor = h / 360;
-                    w /= factor;
-                    h = 360;
-                }
-                DescImage.Width = w;
-                DescImage.Height = h;
-                DescImage.Stretch = Stretch.Uniform;
+                DescImage.Stretch = Stretch.UniformToFill;
             }
             DescHeader.Text = element.Header;
             var textBlock = TextGen.GetText(element.Text!, element.Centered, DescScrollView.ActualWidth);
@@ -46,24 +40,10 @@ namespace SolyankaGuide
 
         private void ShowDescription(Description desc)
         {
-            if (desc.ImagePaths == null || desc.ImagePaths.Length == 1)
-            {
-                BitmapImage? bitmap = ImageLoader.LoadImage(desc.ImagePaths == null? "" : desc.ImagePaths[0]);
-                if (desc.ImagePaths == null)
-                {
-                    bitmap = ImageLoader.LoadImage("");
-                } else
-                {
-                    bitmap = ImageLoader.LoadImage(desc.ImagePaths[0]);
-                }
-                if (bitmap != null)
-                {
-                    DescImage.Source = bitmap;
-                    DescImage.Width = bitmap.PixelWidth;
-                    DescImage.Height = bitmap.PixelHeight;
-                    DescImage.Stretch = Stretch.Uniform;
-                }
-            }
+            BackButton.Visibility = Visibility.Visible;
+            BitmapImage? bitmap = ImageLoader.LoadImage(desc.ImagePath);
+            DescImage.Source = bitmap;
+            DescImage.Stretch = Stretch.UniformToFill;
             DescHeader.Text = desc.Header;
             var textBlock = TextGen.GetText(desc.Text!, desc.Centered, DescScrollView.ActualWidth);
             DescScrollView.Content = textBlock;
@@ -71,6 +51,17 @@ namespace SolyankaGuide
             Visibility = Visibility.Visible;
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Hidden;
+            ShowGrid?.Invoke();
+        }
 
+        private void Image_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            bool over = (bool)e.NewValue;
+            ((Image)sender).OpacityMask = over? Brushes.Yellow : Brushes.White;
+
+        }
     }
 }

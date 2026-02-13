@@ -6,5 +6,7 @@
     <Application.Resources>
         <local:ThreeColumnConverter x:Key="ThreeColumnConverter"/>
         <local:AspectRatioConverter x:Key="AspectRatioConverter"/>
+        <local:HalfConverter x:Key="HalfConverter"/>
+        <local:SixteenNineConverter x:Key="SixteenNineConverter"/>
     </Application.Resources>
 </Application>

@@ -10,7 +10,7 @@
                 "name": "Пуля",
                 "header": "Пуля",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "Выдаёт задание \"Пленники под прицелом\" на спасение товарищей в тюрьме Тёмной Долины.",
@@ -24,7 +24,7 @@
                 "name": "Макс Любер",
                 "header": "Задания Макса Любера",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "После спасения просит принести ему ПДА из подземки Агропрома.",
@@ -36,7 +36,7 @@
                 "name": "Генератор в X-18",
                 "header": "Погружение во тьму (X-18)",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["house.png"], 
+                "imagePath": "house.png",
                 "centered": false,
                 "text": [
                     "В комнате рядом с трупом учёного находим генератор, включающий в лаборатории свет.",

@@ -10,7 +10,7 @@
                 "name": "Юрик",
                 "header": "ПП для Юрика",
                 "gridImagePath": "icon0.png",
-                "imagePaths": ["car.png"],
+                "imagePath": "car.png",
                 "centered": false,
                 "text": [
                     "После спасения от грабителей Юрик выдаёт задание \"Подарок для Юрика\" на поиск уникального MP5.",
@@ -24,7 +24,7 @@
                 "name": "Бес",
                 "header": "Квесты Беса",
                 "gridImagePath": "bes.png",
-                "imagePaths": ["bes.png"], 
+                "imagePath": "bes.png",
                 "centered": false,
                 "text": [
                     "После помощи с бандитским рейдом выдаёт квест \"Пивная калорийность\" на доставку 5 банок пива.",
@@ -40,7 +40,7 @@
                 "name": "Серый",
                 "header": "Колючка Серого",
                 "gridImagePath": "seriy.png",
-                "imagePaths": ["seriy.png"], 
+                "imagePath": "seriy.png",
                 "centered": false,
                 "text": [
                     "После обороны Депо выдаёт квест на доставку артефакта \"Колючка\".",
@@ -51,7 +51,7 @@
                 "name": "Прапор",
                 "header": "Задания Прапора",
                 "gridImagePath": "prapor.png",
-                "imagePaths": ["prapor.png"], 
+                "imagePath": "prapor.png",
                 "centered": false,
                 "text": [
                     "В ходе выполнения задания %gl=quests/q_kordon/2/6%\"Челночная деятельность\"%egl% за посылку просит выполнить для него задание \"Убираем все хвосты\".",
@@ -82,7 +82,7 @@
                 "name": "Первая встреча",
                 "header": "Первая встреча",
                 "gridImagePath": "brodyaga.png",
-                "imagePaths": ["brodyaga.png"],
+                "imagePath": "brodyaga.png",
                 "centered": false,
                 "text": [
                     "Впервые появляется около Депо на Свалке во время обороны от бандитов.",
