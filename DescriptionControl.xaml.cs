@@ -22,7 +22,6 @@ namespace SolyankaGuide
             {
                 if (DescScrollView.Content != null) ((TextBlock)DescScrollView.Content).Width = e.NewSize.Width;
             };
-            MainWindow.ChangeFocus += () => Focus();
         }
 
         private void ShowDescription(Element element)

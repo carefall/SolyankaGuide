@@ -9,7 +9,6 @@ namespace SolyankaGuide
     {
 
         public static event Action? SetupUI;
-        public static event Action? ChangeFocus;
         private bool locked = false;
 
         public MainWindow()
@@ -74,7 +73,6 @@ namespace SolyankaGuide
             if (MaximizedImage.Visibility == Visibility.Visible)
             {
                 MaximizedImage.Visibility = Visibility.Hidden;
-                ChangeFocus?.Invoke();
             }
         }
     }
