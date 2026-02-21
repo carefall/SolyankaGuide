@@ -3,9 +3,10 @@
 		"internal_name": "faq",
 		"name": "ЧаВо",
 		"elementsPaths": [
-			"faq_launcher",
-			"faq_game",
-			"faq_community"
+			"Faq/faq_launcher",
+			"Faq/faq_game",
+			"Faq/patches",
+			"Faq/faq_community"
 		]
 	}
 ]

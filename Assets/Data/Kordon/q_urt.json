@@ -1,0 +1,116 @@
+[
+    {
+        "name": "Костя",
+        "header": "",
+        "text": null,
+        "centered": false,
+        "imagePaths": null,
+        "descriptions": [
+            {
+                "name": "Введение",
+                "header": "Что за Костя?",
+                "gridImagePath": "Characters/kostya.png",
+                "imagePath": "Characters/kostya.png",
+                "centered": false,
+                "text": [
+                    "После спасения Шустрого в деревню приходит Костя. Ему нужна помощь с поиском ПДА в тайниках.",
+                    "Если с поисками не получается, то местоположение тайников можно найти в этом гиде или на YouTube-канале солянки."
+                ]
+            },
+            {
+                "name": "Тайник на Кордоне",
+                "header": "Тайник Кости на Кордоне",
+                "gridImagePath": "Locations/kordon.png",
+                "imagePath": "Locations/kordon.png",
+                "centered": false,
+                "text": [
+                    "Первый тайник находится на одной из локаций:",
+                    "- В %s%печке в одном из домов в Деревне Новичков%es%",
+                    "- В %s%кабине тепловоза на ЖД мосту%es%",
+                    "- В %s%квадратной трубе на элеваторе%es%",
+                    "После доставки ПДА Косте, тот выдаст задание \"Рыбный день\" на поиски артефакта \"Золотая рыбка\".",
+                    "После доставки \"Золотой рыбки\" Костя даст наводку на второй тайник."
+                ]
+            },
+            {
+                "name": "Тайник на Свалке",
+                "header": "Тайник Кости на Свалке",
+                "gridImagePath": "Locations/svalka.png",
+                "imagePath": "Locations/svalka.png",
+                "centered": false,
+                "text": [
+                    "Второй тайник находится на одной из локаций:",
+                    "- В %s%пожарной машине на кладбище техники%es%",
+                    "- Напротив %s%ангара в мусорной куче%es%",
+                    "- В %s%болоте за южной стоянкой бандитов%es%",
+                    "Далее Костю можно будет найти в Баре."
+                ]
+            },
+            {
+                "name": "Тайник в X-18",
+                "header": "Тайник Кости в X-18",
+                "gridImagePath": "Locations/lab18.png",
+                "imagePath": "Locations/lab18.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится на одной из локаций:",
+                    "- Около %s%труб в зале с псевдогигантом%es%",
+                    "- В %s%X%es%",
+                    "- В %s%X%es%"
+                ]
+            },
+            {
+                "name": "Тайник на Агропроме",
+                "header": "Тайник Кости на Агропроме",
+                "gridImagePath": "Locations/agro.png",
+                "imagePath": "Locations/agro.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится на одной из локаций:",
+                    "- На %s%жёлтом прицепе%es%",
+                    "- В %s%X%es%",
+                    "- В %s%X%es%"
+                ]
+            },
+            {
+                "name": "Тайник на Янтаре",
+                "header": "Тайник Кости на Янтаре",
+                "gridImagePath": "Locations/yantar.png",
+                "imagePath": "Locations/yantar.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится на одной из локаций:",
+                    "- На %s%крыше здания над лабораторией%es%",
+                    "- В %s%X%es%",
+                    "- В %s%X%es%"
+                ]
+            },
+            {
+                "name": "Тайник на Складах",
+                "header": "Тайник Кости на Армейских Складах",
+                "gridImagePath": "Locations/sklad.png",
+                "imagePath": "Locations/sklad.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится на одной из локаций:",
+                    "- В %s%трубе на крыше дома на хуторе около стоянки наёмников%es%",
+                    "- В %s%X%es%",
+                    "- В %s%X%es%"
+                ]
+            },
+            {
+                "name": "Тайник на Радаре",
+                "header": "Тайник Кости на Радаре",
+                "gridImagePath": "Locations/radar.png",
+                "imagePath": "Locations/radar.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится на одной из локаций:",
+                    "- В %s%камнях возле стоянки сталкеров в мёртвом лесу%es%",
+                    "- В %s%X%es%",
+                    "- В %s%X%es%"
+                ]
+            }
+        ]
+    }
+]

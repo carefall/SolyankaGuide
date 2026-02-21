@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              VerticalAlignment="Top"
              Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=WrapPanel}, Converter={StaticResource ThreeColumnConverter}}"
-             Height="{Binding Width, RelativeSource={RelativeSource Self}, Converter={StaticResource AspectRatioConverter}}">
+             Height="{Binding Width, RelativeSource={RelativeSource Self}, Converter={StaticResource GriddedRatioConverter}}">
     <Grid x:Name="DescGrid">
         <Image x:Name="Image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill" SizeChanged="Image_SizeChanged"/>
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="#99000000">
-            <TextBlock x:Name="TileName" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextAlignment="Center" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" FontSize="20" FontWeight="Bold" Foreground="Yellow" Margin="0,0,0,5"/>
+            <TextBlock x:Name="TileName" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextAlignment="Center" FontFamily="Segoe UI, Noto Sans, Arial, Times New Roman" FontSize="20" FontWeight="Bold" Foreground="Yellow" Margin="0,0,0,7"/>
         </Border>
     </Grid>
 </UserControl>

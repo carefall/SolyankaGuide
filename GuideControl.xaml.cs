@@ -31,7 +31,7 @@ namespace SolyankaGuide
                 MessageBox.Show(Locale.Get("category_not_found"), Locale.Get("guide"), MessageBoxButton.OK);
                 return;
             }
-            var list = cat.Lists!.FirstOrDefault(e => e!.Name == listName, null);
+            var list = cat.Lists!.FirstOrDefault(e => e!.Name.Split("/").Last() == listName, null);
             if (list == null)
             {
                 Logger.Log("Guide", $"Hyperlink was directing to non-existing element list {listName} in category {category}");

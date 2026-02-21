@@ -6,6 +6,9 @@ namespace SolyankaGuide
 {
     public partial class GriddedDescription : UserControl
     {
+
+        private const double baseSize = 255;
+
         public GriddedDescription()
         {
             InitializeComponent();
@@ -14,10 +17,10 @@ namespace SolyankaGuide
         private void Image_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
             DescGrid.Clip = new RectangleGeometry(new Rect(0, 0, Image.ActualWidth, Image.ActualHeight), 10, 10);
-            double ps = e.PreviousSize.Width;
             double ns = e.NewSize.Width;
-            if (ps == 0) return;
-            TileName.FontSize *= (ns / ps);
+            if (ns == 0) return;
+            
+            TileName.FontSize = 20 * (ns / baseSize);
         }
     }
 }

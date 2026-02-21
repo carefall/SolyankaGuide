@@ -3,21 +3,32 @@
 		"internal_name": "faq",
 		"name": "ЧаВо",
 		"elementsPaths": [
-			"faq_launcher",
-			"faq_game",
-			"faq_community"
+			"Guide/faq_launcher",
+			"Guide/faq_game",
+			"Guide/patches",
+			"Guide/faq_community"
 		]
 	},
 	{
 		"internal_name": "quests",
 		"name": "Квесты",
 		"elementsPaths": [
-			"q_kordon",
+			"Kordon/q_kordon",
+			"Kordon/q_urt",
+			"Kordon/q_skat",
+			"Kordon/q_desant",
+			"Kordon/q_expedition",
+			"Kordon/q_so",
 			"q_svalka",
 			"q_agro",
 			"q_bar",
 			"q_dolina",
-			"q_yantar",
+			"Yantar/q_yantar",
+			"Bolota/q_bolota",
+			"Yantar/q_prizrakklik",
+			"Bolota/q_kot",
+			"Bolota/q_baza",
+			"Bolota/q_muzik",
 			"q_krest",
 			"q_atp"
 		]
@@ -26,14 +37,14 @@
 		"internal_name": "items",
 		"name": "Предметы",
 		"elementsPaths": [
-			"items"
+			"Guide/items"
 		]
 	},
 	{
 		"internal_name": "mech",
 		"name": "Механики",
 		"elementsPaths": [
-			"mech"
+			"Guide/mech"
 		]
 	}
 ]

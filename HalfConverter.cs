@@ -10,7 +10,7 @@ namespace SolyankaGuide
         {
             if (value is double totalWidth)
             {
-                return (totalWidth / 1.5);
+                return (totalWidth / 1.75);
             }
             return 100.0;
         }

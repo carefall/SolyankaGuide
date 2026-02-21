@@ -30,6 +30,7 @@ namespace SolyankaGuide
                 bool isBottom = i >= firstIndexOfLastRow;
                 Descriptions.Children.Add(BuildSubButtonUI(desc, isRight, isBottom));
             }
+            Scroller.ScrollToTop();
         }
 
         private GriddedDescription BuildSubButtonUI(Description desc, bool rightest, bool lowest)
