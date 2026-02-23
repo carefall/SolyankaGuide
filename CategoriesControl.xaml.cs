@@ -28,6 +28,7 @@ namespace SolyankaGuide
             InitializeComponent();
             MainWindow.SetupUI += SetupCategories;
             GuideControl.OpenElementWithHyper += OpenCategoryWithHyper;
+            DescriptionControl.RedrawCategory += RedrawCategory;
         }
 
         private void OpenCategory(Category category)
@@ -39,6 +40,20 @@ namespace SolyankaGuide
                 currentButton = null;
                 return;
             }
+            if (currentButton != null)
+            {
+                currentButton.IsChecked = false;
+                currentButton = category.RelatedButton;
+            }
+            else
+            {
+                currentButton = category.RelatedButton;
+            }
+            SwitchSidePanel?.Invoke(category);
+        }
+
+        private void RedrawCategory(Category category)
+        {
             if (currentButton != null)
             {
                 currentButton.IsChecked = false;

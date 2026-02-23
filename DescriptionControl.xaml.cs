@@ -10,7 +10,8 @@ namespace SolyankaGuide
     public partial class DescriptionControl : UserControl
     {
 
-        public static event Action? ShowGrid;
+        internal static event Action<Category>? RedrawCategory;
+        private Category? currentCategory;
 
         public DescriptionControl()
         {
@@ -24,8 +25,9 @@ namespace SolyankaGuide
             };
         }
 
-        private void ShowDescription(Element element)
+        private void ShowDescription(Category cat, Element element)
         {
+            currentCategory = cat;
             BackButton.Visibility = Visibility.Hidden;
             BitmapImage? bitmap = ImageLoader.LoadImage(element.ImagePath);
             if (bitmap != null)
@@ -39,8 +41,9 @@ namespace SolyankaGuide
             DescScrollView.ScrollToTop();
         }
 
-        private void ShowDescription(Description desc)
+        private void ShowDescription(Category cat, Description desc)
         {
+            currentCategory = cat;
             BackButton.Visibility = Visibility.Visible;
             BitmapImage? bitmap = ImageLoader.LoadImage(desc.ImagePath);
             DescImage.Source = bitmap;
@@ -56,7 +59,7 @@ namespace SolyankaGuide
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Visibility = Visibility.Hidden;
-            ShowGrid?.Invoke();
+            RedrawCategory?.Invoke(currentCategory!);
         }
 
         private void UserControl_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -65,7 +68,7 @@ namespace SolyankaGuide
             if (Visibility == Visibility.Visible && BackButton.Visibility == Visibility.Visible)
             {
                 Visibility = Visibility.Hidden;
-                ShowGrid?.Invoke();
+                RedrawCategory?.Invoke(currentCategory!);
             }
         }
     }

@@ -8,16 +8,15 @@ namespace SolyankaGuide
     public partial class DescriptionGridControl : UserControl
     {
 
-        internal static event Action<Description>? ShowDescription;
+        internal static event Action<Category, Description>? ShowDescription;
 
         public DescriptionGridControl()
         {
             InitializeComponent();
             GuideControl.ShowGrid += ShowGrid;
-            DescriptionControl.ShowGrid += () => Visibility = Visibility.Visible;
         }
 
-        private void ShowGrid(Element element)
+        private void ShowGrid(Category cat, Element element)
         {
             Descriptions.Children.Clear();
             int len = element.Descriptions!.Length;
@@ -28,12 +27,12 @@ namespace SolyankaGuide
                 var desc = element.Descriptions[i];
                 bool isRight = (i % 3) == 2;
                 bool isBottom = i >= firstIndexOfLastRow;
-                Descriptions.Children.Add(BuildSubButtonUI(desc, isRight, isBottom));
+                Descriptions.Children.Add(BuildSubButtonUI(cat, desc, isRight, isBottom));
             }
             Scroller.ScrollToTop();
         }
 
-        private GriddedDescription BuildSubButtonUI(Description desc, bool rightest, bool lowest)
+        private GriddedDescription BuildSubButtonUI(Category cat, Description desc, bool rightest, bool lowest)
         {
             GriddedDescription gd = new()
             {
@@ -44,15 +43,15 @@ namespace SolyankaGuide
             gd.TileName.Text = desc.Name;
             gd.MouseDown += (s, e) =>
             {
-                OpenDescription(desc);
+                OpenDescription(cat, desc);
             };
             return gd;
         }
 
-        private void OpenDescription(Description desc)
+        private void OpenDescription(Category cat, Description desc)
         {
             Visibility = Visibility.Hidden;
-            ShowDescription?.Invoke(desc);
+            ShowDescription?.Invoke(cat, desc);
         }
     }
 }

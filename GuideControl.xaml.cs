@@ -9,9 +9,9 @@ namespace SolyankaGuide
     public partial class GuideControl : UserControl
     {
 
-        internal static event Action<Element>? ShowGrid;
-        internal static event Action<Element>? ShowElement;
-        internal static event Action<Description>? ShowDescription;
+        internal static event Action<Category, Element>? ShowGrid;
+        internal static event Action<Category, Element>? ShowElement;
+        internal static event Action<Category, Description>? ShowDescription;
         internal static event Action<Category, Element, Description?>? OpenElementWithHyper;
 
         public GuideControl()
@@ -112,7 +112,7 @@ namespace SolyankaGuide
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Style = (Style)FindResource("ElementsStyle")
                 };
-                rb.Click += (s, e) => OpenElement(elem);
+                rb.Click += (s, e) => OpenElement(category, elem);
                 Elements.Children.Add(rb);
                 if (i != elements.Length - 1)
                 {
@@ -134,20 +134,20 @@ namespace SolyankaGuide
             {
                 if (target!.Descriptions == null || target.Descriptions.Length == 0)
                 {
-                    ShowElement?.Invoke(target);
+                    ShowElement?.Invoke(category, target);
                     DescControl.Visibility = Visibility.Visible;
                     DescControl.Focus();
                     DescGridControl.Visibility = Visibility.Hidden;
                 } else
                 {
-                    ShowGrid?.Invoke(target);
+                    ShowGrid?.Invoke(category, target);
                     DescControl.Visibility = Visibility.Hidden;
                     DescGridControl.Visibility = Visibility.Visible;
                 }
             }
             else
             {
-                ShowDescription?.Invoke(description);
+                ShowDescription?.Invoke(category, description);
             }
         }
 
@@ -173,7 +173,7 @@ namespace SolyankaGuide
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Style = (Style)FindResource("ElementsStyle")
                 };
-                rb.Click += (s, e) => OpenElement(element);
+                rb.Click += (s, e) => OpenElement(category, element);
                 Elements.Children.Add(rb);
                 if (i != elements.Length - 1)
                 {
@@ -189,16 +189,16 @@ namespace SolyankaGuide
             ((Storyboard)Resources["ShowSidePanel"]).Begin();
         }
 
-        private void OpenElement(Element element)
+        private void OpenElement(Category cat, Element element)
         {
             if (element.Descriptions != null)
             {
-                ShowGrid?.Invoke(element);
+                ShowGrid?.Invoke(cat, element);
                 DescControl.Visibility = Visibility.Hidden;
                 DescGridControl.Visibility = Visibility.Visible;
                 return;
             }
-            ShowElement?.Invoke(element);
+            ShowElement?.Invoke(cat, element);
             DescControl.Visibility = Visibility.Visible;
             DescControl.Focus();
             DescGridControl.Visibility = Visibility.Hidden;
