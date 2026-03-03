@@ -144,6 +144,17 @@
                     "За свою флешку просит 20000 рублей.",
                     "Появляется на болотах по заданию %gl=quests/q_skladi/1/3%Скряги%egl%."
                 ]
+            },
+            {
+                "name": "Флешка Сяка",
+                "header": "Дезертир",
+                "gridImagePath": "Locations/marsh.png",
+                "imagePath": "Locations/marsh.png",
+                "centered": false,
+                "text": [
+                    "За свою флешку просит передать записку Ворону.",
+                    "Появляется на болотах по заданию %gl=quests/q_skladi/1/3%Скряги%egl%."
+                ]
             }
         ]
     }

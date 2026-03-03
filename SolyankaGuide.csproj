@@ -238,6 +238,9 @@
 		<Content Include="Assets\Data\q_atp.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Data\q_pripyat.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Data\Yantar\q_prizrakklik.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
