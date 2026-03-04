@@ -16,7 +16,6 @@ namespace SolyankaGuide.Internals
         public static event Action<BitmapImage>? MaximizeImage;
 
         private static readonly SolidColorBrush spoilerColor = (SolidColorBrush) new BrushConverter().ConvertFromString("#1a1a1a")!;
-
         public static TextBlock GetText(string[] text, bool centered, double width)
         {
             var tb = new TextBlock
@@ -29,6 +28,7 @@ namespace SolyankaGuide.Internals
                 Focusable = false,
                 Margin = new Thickness(0, 5, 0, 0)
             };
+
             tb.SizeChanged += (s, e) =>
             {
                 foreach (var inline in tb.Inlines)
@@ -41,235 +41,160 @@ namespace SolyankaGuide.Internals
                     img.Width = tb.ActualWidth / 3;
                 }
             };
-            string[] lines = text;
-            for (int i = 0; i < lines.Length; i++)
+
+            // Combined regex to find all supported tags in a single pass. Named groups identify which tag matched.
+            string pattern = @"%l=(?<link>.*?)%(?<linkText>.*?)%el%|%gl=(?<glParts>.*?)%(?<glText>.*?)%egl%|%img=(?<imgSrc>.*?)%(?<imgText>.*?)%eimg%|%s%(?<spoilerText>.*?)%es%";
+            var regex = new Regex(pattern);
+
+            foreach (var rawLine in text)
             {
-                if (i != 0) tb.Inlines.Add("\n");
-                var line = lines[i];
-                bool hasHyper = Hyperlink(line, out string hOutput, out string hLink, out string hWords);
-                bool hasSwitchHyper = SwitchHyperlink(line, out string shOutput, out string[] shParts, out string shWords);
-                bool hasSpoiler = Spoiler(line, out string spoilerOutput, out string spoilerWords);
-                bool isImage = ImageInline(line, out string iOutput, out string img);
-                if (isImage)
+                if (tb.Inlines.Count > 0)
+                    tb.Inlines.Add("\n");
+
+                string line = rawLine ?? string.Empty;
+                int lastIndex = 0;
+                var matches = regex.Matches(line);
+                foreach (Match match in matches)
                 {
-                    var bmi = ImageLoader.LoadImage(img);
-                    var hyperlink = new Hyperlink(new Run(iOutput))
+                    if (match.Index > lastIndex)
                     {
-                        Foreground = Brushes.Aqua,
-                    };
-                    hyperlink.Click += (s, e) =>
+                        string before = line.Substring(lastIndex, match.Index - lastIndex);
+                        if (!string.IsNullOrEmpty(before)) tb.Inlines.Add(new Run(before));
+                    }
+
+                    if (match.Groups["link"].Success)
                     {
-                        MaximizeImage?.Invoke(bmi);
-                    };
-                    tb.Inlines.Add(hyperlink);
-                }
-                else if (hasHyper)
-                {
-                    int markerIndex = hOutput.IndexOf(hWords);
-                    string before = hOutput[..markerIndex];
-                    string after = hOutput[(markerIndex + hWords.Length)..];
-                    var textBlock = new TextBlock
+                        string url = match.Groups["link"].Value;
+                        string words = match.Groups["linkText"].Value;
+                        var hyperlink = new Hyperlink(new Run(words))
+                        {
+                            Foreground = Brushes.Aqua,
+                            TextDecorations = TextDecorations.Underline
+                        };
+                        hyperlink.Click += (s, e) => UrlOpener.OpenUrl(url);
+                        tb.Inlines.Add(hyperlink);
+                    }
+                    else if (match.Groups["glParts"].Success)
                     {
-                        TextWrapping = TextWrapping.Wrap
-                    };
-                    if (!string.IsNullOrEmpty(before))
-                        textBlock.Inlines.Add(new Run(before));
-                    var hyperlink = new Hyperlink(new Run(hWords))
+                        string firstGroup = match.Groups["glParts"].Value;
+                        string words = match.Groups["glText"].Value;
+                        var parts = firstGroup.Split('/');
+                        bool valid = parts.Length is >= 3 and <= 4;
+                        if (valid)
+                        {
+                            if (!int.TryParse(parts[2], out int eId) || eId < 0) valid = false;
+                            if (valid && parts.Length == 4)
+                            {
+                                if (!int.TryParse(parts[3], out int dId) || dId < 0) valid = false;
+                            }
+                        }
+                        if (!valid)
+                        {
+                            // If invalid, output the raw matched text as-is
+                            tb.Inlines.Add(new Run(match.Value));
+                        }
+                        else
+                        {
+                            var hyperlink = new Hyperlink(new Run(words))
+                            {
+                                Foreground = Brushes.Yellow,
+                                FontWeight = FontWeights.Bold
+                            };
+                            hyperlink.Click += (s, e) =>
+                            {
+                                SwitchDescription?.Invoke(parts[0], parts[1], int.Parse(parts[2]), parts.Length == 4 ? int.Parse(parts[3]) : -1);
+                            };
+                            tb.Inlines.Add(hyperlink);
+                        }
+                    }
+                    else if (match.Groups["imgSrc"].Success)
                     {
-                        Foreground = Brushes.Aqua,
-                        TextDecorations = TextDecorations.Underline,
-                    };
-                    hyperlink.Click += (s, e) =>
+                        // Use legacy ImageInline behavior: show alt text as hyperlink that opens the image.
+                        string src = match.Groups["imgSrc"].Value;
+                        string alt = match.Groups["imgText"].Value;
+                        try
+                        {
+                            var bmi = ImageLoader.LoadImage(src);
+                            var hyperlink = new Hyperlink(new Run(alt))
+                            {
+                                Foreground = Brushes.Aqua,
+                                TextDecorations = TextDecorations.Underline
+                            };
+                            hyperlink.Click += (s, e) => MaximizeImage?.Invoke(bmi);
+                            tb.Inlines.Add(hyperlink);
+                        }
+                        catch
+                        {
+                            // on failure show the alt/text without hyperlink
+                            tb.Inlines.Add(new Run(alt));
+                        }
+                    }
+                    else if (match.Groups["spoilerText"].Success)
                     {
-                        UrlOpener.OpenUrl(hLink);
-                    };
-                    textBlock.Inlines.Add(hyperlink);
-                    if (!string.IsNullOrEmpty(after))
-                        textBlock.Inlines.Add(new Run(after));
-                    tb.Inlines.Add(textBlock);
-                }
-                else if (hasSwitchHyper)
-                {
-                    int markerIndex = shOutput.IndexOf(shWords);
-                    string before = shOutput[..markerIndex];
-                    string after = shOutput[(markerIndex + shWords.Length)..];
-                    var textBlock = new TextBlock
-                    {
-                        TextWrapping = TextWrapping.Wrap
-                    };
-                    if (!string.IsNullOrEmpty(before))
-                        textBlock.Inlines.Add(new Run(before));
-                    var hyperlink = new Hyperlink(new Run(shWords))
-                    {
-                        Foreground = Brushes.Yellow,
-                        FontWeight = FontWeights.Bold
-                    };
-                    hyperlink.Click += (s, e) =>
-                    {
-                        SwitchDescription?.Invoke(shParts[0], shParts[1], int.Parse(shParts[2]), shParts.Length == 4? int.Parse(shParts[3]) : -1);
-                    };
-                    textBlock.Inlines.Add(hyperlink);
-                    if (!string.IsNullOrEmpty(after))
-                        textBlock.Inlines.Add(new Run(after));
-                    tb.Inlines.Add(textBlock);
-                }
-                else if (hasSpoiler)
-                {
-                    int markerIndex = spoilerOutput.IndexOf(spoilerWords);
-                    string before = spoilerOutput[..markerIndex];
-                    string after = spoilerOutput[(markerIndex + spoilerWords.Length)..];
-                    var textBlock = new TextBlock
-                    {
-                        TextWrapping = TextWrapping.Wrap
-                    };
-                    if (!string.IsNullOrEmpty(before))
-                        textBlock.Inlines.Add(new Run(before + " "));
-                    var hyperlink = new Hyperlink(new Run(spoilerWords))
-                    {
-                        Foreground = spoilerColor,
-                        Background = spoilerColor,
-                        TextDecorations = null,
-                        Cursor = Cursors.Arrow
-                    };
-                    hyperlink.Click += (s, e) =>
-                    {
-                        hyperlink.Inlines.FirstInline.Foreground = Brushes.White;
-                        hyperlink.Inlines.FirstInline.Background = Brushes.Transparent;
-                    };
-                    hyperlink.MouseEnter += (s, e) =>
-                    {
-                        hyperlink.Foreground = Brushes.Gray;
-                        hyperlink.Background = Brushes.Gray;
-                    };
-                    hyperlink.MouseLeave += (s, e) =>
-                    {
-                        hyperlink.Foreground = spoilerColor;
-                        hyperlink.Background = spoilerColor;
-                    };
-                    textBlock.Inlines.Add(hyperlink);
-                    if (!string.IsNullOrEmpty(after))
-                        textBlock.Inlines.Add(new Run(after));
-                    tb.Inlines.Add(textBlock);
-                }
-                else
-                {
-                    tb.Inlines.Add(line);
+                        string words = match.Groups["spoilerText"].Value;
+                        var hyperlink = new Hyperlink(new Run(words))
+                        {
+                            Foreground = spoilerColor,
+                            Background = spoilerColor,
+                            TextDecorations = null,
+                            Cursor = Cursors.Arrow,
+                            Tag = false
+                        };
+
+                        hyperlink.Click += (s, e) =>
+                        {
+                            // On click: reveal permanently — make text white and remove background.
+                            if (hyperlink.Inlines.FirstInline is Run r)
+                            {
+                                r.Foreground = Brushes.White;
+                            }
+                            hyperlink.Background = Brushes.Transparent;
+                            hyperlink.Tag = true; // mark as revealed
+                        };
+
+                        hyperlink.MouseEnter += (s, e) =>
+                        {
+                            // If already revealed, do nothing on hover.
+                            if (hyperlink.Tag is bool clicked && clicked) return;
+                            // On hover before click keep text color the same as spoiler (i.e. equal to background),
+                            // so set both to a lighter shade but equal values.
+                            var hoverBrush = Brushes.Gray;
+                            hyperlink.Background = hoverBrush;
+                            if (hyperlink.Inlines.FirstInline is Run r)
+                            {
+                                r.Foreground = hoverBrush;
+                            }
+                        };
+
+                        hyperlink.MouseLeave += (s, e) =>
+                        {
+                            // If already revealed, do nothing on leave.
+                            if (hyperlink.Tag is bool clicked && clicked) return;
+                            // Revert both background and text to hidden color.
+                            hyperlink.Background = spoilerColor;
+                            if (hyperlink.Inlines.FirstInline is Run r)
+                            {
+                                r.Foreground = spoilerColor;
+                            }
+                        };
+                        tb.Inlines.Add(hyperlink);
+                    }
+
+                    lastIndex = match.Index + match.Length;
                 }
 
+                if (lastIndex < line.Length)
+                {
+                    string tail = line.Substring(lastIndex);
+                    if (!string.IsNullOrEmpty(tail)) tb.Inlines.Add(new Run(tail));
+                }
+
+                // If there were no matches at all, ensure the whole line is added
+                if (matches.Count == 0 && !string.IsNullOrEmpty(line))
+                    tb.Inlines.Add(new Run(line));
             }
+
             return tb;
-
-        }
-
-        private static bool SwitchHyperlink(string input, out string output, out string[] parts, out string wordsToReplace)
-        {
-            string pattern = @"%gl=(.*?)%(.*?)%egl%";
-            Regex regex = new(pattern);
-            Match match = regex.Match(input);
-            if (match.Success)
-            {
-                string firstGroup = match.Groups[1].Value;
-                parts = firstGroup.Split('/');
-                if (parts.Length > 4 || parts.Length < 3)
-                {
-                    parts = Array.Empty<string>();
-                    wordsToReplace = "";
-                    output = input;
-                    return false;
-                }
-                if (!int.TryParse(parts[2], out int eId))
-                {
-                    parts = Array.Empty<string>();
-                    wordsToReplace = "";
-                    output = input;
-                    return false;
-                }
-                if (eId < 0)
-                {
-                    parts = Array.Empty<string>();
-                    wordsToReplace = "";
-                    output = input;
-                    return false;
-                }
-                if (parts.Length == 4)
-                {
-                    if (!int.TryParse(parts[3], out int dId))
-                    {
-                        parts = Array.Empty<string>();
-                        wordsToReplace = "";
-                        output = input;
-                        return false;
-                    }
-                    if (dId < 0)
-                    {
-                        parts = Array.Empty<string>();
-                        wordsToReplace = "";
-                        output = input;
-                        return false;
-                    }
-                }
-                string secondGroup = match.Groups[2].Value;
-                output = input.Replace("%egl%", "").Replace($"%gl={firstGroup}%", "");
-                wordsToReplace = secondGroup;
-                return true;
-            }
-            parts = Array.Empty<string>();
-            wordsToReplace = "";
-            output = input;
-            return false;
-        }
-
-        private static bool ImageInline(string input, out string output, out string img)
-        {
-            string pattern = @"%img=(.*?)%(.*?)%eimg%";
-            Regex regex = new(pattern);
-            Match match = regex.Match(input);
-            if (match.Success)
-            {
-                img = match.Groups[1].Value;
-                output = input.Replace("%eimg%", "").Replace($"%img={img}%", "");
-                return true;
-            }
-            img = "";
-            output = input;
-            return false;
-        }
-
-        private static bool Spoiler(string input, out string output, out string wordsToReplace)
-        {
-            string pattern = @"%s%(.*?)%es%";
-            Regex regex = new(pattern);
-            Match match = regex.Match(input);
-            if (match.Success)
-            {
-                string firstGroup = match.Groups[1].Value;
-                output = input.Replace("%es%", "").Replace($"%s%", "");
-                wordsToReplace = firstGroup;
-                return true;
-            }
-            wordsToReplace = "";
-            output = input;
-            return false;
-        }
-
-        private static bool Hyperlink(string input, out string output, out string link, out string wordsToReplace)
-        {
-            string pattern = @"%l=(.*?)%(.*?)%el%";
-            Regex regex = new(pattern);
-            Match match = regex.Match(input);
-            if (match.Success)
-            {
-                string firstGroup = match.Groups[1].Value;
-                string secondGroup = match.Groups[2].Value;
-                output = input.Replace("%el%", "").Replace($"%l={firstGroup}%", "");
-                wordsToReplace = secondGroup;
-                link = firstGroup;
-                return true;
-            }
-            link = "";
-            wordsToReplace = "";
-            output = input;
-            return false;
         }
     }
 }
