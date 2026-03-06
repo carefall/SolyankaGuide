@@ -79,6 +79,18 @@
                 ]
             },
             {
+                "name": "Поиски СКАТ-15",
+                "header": "Поиски СКАТ-15",
+                "gridImagePath": "Locations/lab8.png",
+                "imagePath": "Locations/lab8.png",
+                "centered": false,
+                "text": [
+                    "За %img=Quests/skat_x8.png%костюмом%eimg% отправляемся в лабораторию X-8(путь туда открывается по ветке %gl=quests/q_prizrakklik/1/0%поисков убийц Клыка%egl%).",
+                    "Первый блок находим на %img=Quests/skat_1.png%фабрике%eimg% над X-18",
+                    "В работе..."
+                ]
+            },
+            {
                 "name": "Каждой твари по части",
                 "header": "Каждой твари по части",
                 "gridImagePath": "Locations/lab16.png",
