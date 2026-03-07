@@ -123,6 +123,17 @@
                     "- В %s%X%es%",
                     "- В %s%X%es%"
                 ]
+            },
+            {
+                "name": "Тайник в X-10",
+                "header": "Тайник Кости в X-10",
+                "gridImagePath": "Locations/lab10.png",
+                "imagePath": "Locations/lab10.png",
+                "centered": false,
+                "text": [
+                    "Тайник находится под вентиляционной решёткой в X.",
+                    ""
+                ]
             }
         ]
     }

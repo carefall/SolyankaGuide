@@ -116,6 +116,7 @@
 		<None Remove="Assets\Images\Locations\territory.png" />
 		<None Remove="Assets\Images\Locations\yantar.png" />
 		<None Remove="Assets\Images\mags.png" />
+		<None Remove="Assets\Images\monolit_code.png" />
 		<None Remove="Assets\Images\needs.png" />
 		<None Remove="Assets\Images\ogsr.png" />
 		<None Remove="Assets\Images\ogsr2026.jpg" />
@@ -148,6 +149,9 @@
 		<None Remove="Assets\Images\Quests\patroni_bes.png" />
 		<None Remove="Assets\Images\Quests\pda_luber.png" />
 		<None Remove="Assets\Images\Quests\pivo.png" />
+		<None Remove="Assets\Images\Quests\Prizrakklik\book1.png" />
+		<None Remove="Assets\Images\Quests\Prizrakklik\book2.png" />
+		<None Remove="Assets\Images\Quests\Prizrakklik\book3.png" />
 		<None Remove="Assets\Images\Quests\Prizrakklik\book_shahter.png" />
 		<None Remove="Assets\Images\Quests\Prizrakklik\deagle.png" />
 		<None Remove="Assets\Images\Quests\Prizrakklik\dnevnik_prizrak.png" />
@@ -160,6 +164,7 @@
 		<None Remove="Assets\Images\Quests\Rasteryasha\clocks.png" />
 		<None Remove="Assets\Images\Quests\Rasteryasha\gazeta.png" />
 		<None Remove="Assets\Images\Quests\Rasteryasha\list.png" />
+		<None Remove="Assets\Images\Quests\Rasteryasha\playboy.png" />
 		<None Remove="Assets\Images\Quests\Rasteryasha\ugolovka.png" />
 		<None Remove="Assets\Images\Quests\sherst_bp.png" />
 		<None Remove="Assets\Images\Quests\Skat\skatx16.png" />
@@ -171,9 +176,11 @@
 		<None Remove="Assets\Images\Quests\SO\kastrul.png" />
 		<None Remove="Assets\Images\Quests\SO\plita.png" />
 		<None Remove="Assets\Images\Quests\SO\podushka.png" />
+		<None Remove="Assets\Images\Quests\SO\pool.png" />
 		<None Remove="Assets\Images\Quests\SO\pribori.png" />
 		<None Remove="Assets\Images\Quests\SO\radio.png" />
 		<None Remove="Assets\Images\Quests\SO\stoltabur.png" />
+		<None Remove="Assets\Images\Quests\SO\tv.png" />
 		<None Remove="Assets\Images\Quests\SO\zstol.png" />
 		<None Remove="Assets\Images\Quests\stash_fanat.png" />
 		<None Remove="Assets\Images\Quests\teleport.png" />
@@ -185,12 +192,42 @@
 		<None Remove="Assets\Images\skatdoc1.png" />
 		<None Remove="Assets\Images\skatdoc2.png" />
 		<None Remove="Assets\Images\starting.png" />
+		<None Remove="Assets\Images\Stashes\strelok1.png" />
 		<None Remove="Assets\Images\storage.png" />
 		<None Remove="Assets\Images\story.png" />
 		<None Remove="Assets\Images\str_stash.png" />
 		<None Remove="Assets\Images\support.png" />
 		<None Remove="Assets\Images\travel.png" />
 		<None Remove="Assets\Images\troll.png" />
+		<None Remove="Assets\Images\Unsorted\bint1.png" />
+		<None Remove="Assets\Images\Unsorted\bint2.png" />
+		<None Remove="Assets\Images\Unsorted\bint3.png" />
+		<None Remove="Assets\Images\Unsorted\bint4.png" />
+		<None Remove="Assets\Images\Unsorted\bint5.png" />
+		<None Remove="Assets\Images\Unsorted\book3_saharov.png" />
+		<None Remove="Assets\Images\Unsorted\dinamit.png" />
+		<None Remove="Assets\Images\Unsorted\diplomat.png" />
+		<None Remove="Assets\Images\Unsorted\gavr_monolit.png" />
+		<None Remove="Assets\Images\Unsorted\komp_enter.png" />
+		<None Remove="Assets\Images\Unsorted\komp_room.png" />
+		<None Remove="Assets\Images\Unsorted\lis_kniga1.png" />
+		<None Remove="Assets\Images\Unsorted\lis_knigi.png" />
+		<None Remove="Assets\Images\Unsorted\medal.png" />
+		<None Remove="Assets\Images\Unsorted\prizrak_sich.png" />
+		<None Remove="Assets\Images\Unsorted\rabi.png" />
+		<None Remove="Assets\Images\Unsorted\rabi_antenny.png" />
+		<None Remove="Assets\Images\Unsorted\racia.png" />
+		<None Remove="Assets\Images\Unsorted\radar.png" />
+		<None Remove="Assets\Images\Unsorted\ruka.png" />
+		<None Remove="Assets\Images\Unsorted\ruka2.png" />
+		<None Remove="Assets\Images\Unsorted\safe_dezertir.png" />
+		<None Remove="Assets\Images\Unsorted\secretlab_atp.png" />
+		<None Remove="Assets\Images\Unsorted\secretlab_x10.png" />
+		<None Remove="Assets\Images\Unsorted\skat15_x8.png" />
+		<None Remove="Assets\Images\Unsorted\sladosti.png" />
+		<None Remove="Assets\Images\Unsorted\small_termosi.png" />
+		<None Remove="Assets\Images\Unsorted\vlad_killer.png" />
+		<None Remove="Assets\Images\Unsorted\zapiski.png" />
 		<None Remove="Assets\Images\upgrades.png" />
 		<None Remove="Assets\Images\virustotal.png" />
 		<None Remove="Assets\Images\vk.png" />
@@ -236,6 +273,9 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Data\q_atp.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Data\q_monolit.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Data\q_pripyat.json">
@@ -309,6 +349,9 @@
 		</Content>
 		<Content Include="Assets\Images\Locations\pripyat.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\monolit_code.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Images\prizrak.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -391,6 +434,15 @@
 		<Content Include="Assets\Images\Quests\pivo.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Images\Quests\Prizrakklik\book1.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Quests\Prizrakklik\book2.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Quests\Prizrakklik\book3.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Images\Quests\Prizrakklik\book_shahter.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -427,6 +479,9 @@
 		<Content Include="Assets\Images\Quests\Rasteryasha\list.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Images\Quests\Rasteryasha\playboy.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Images\Quests\Rasteryasha\ugolovka.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -460,6 +515,9 @@
 		<Content Include="Assets\Images\Quests\SO\podushka.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Images\Quests\SO\pool.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Images\Quests\SO\pribori.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -467,6 +525,9 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Images\Quests\SO\stoltabur.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Quests\SO\tv.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Images\Quests\SO\zstol.png">
@@ -733,10 +794,100 @@
 		<Content Include="Assets\Images\Quests\Skat\skatdoc2.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Images\Stashes\strelok1.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Images\Stashes\str_stash.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Images\Quests\volkdok.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\bint1.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\bint2.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\bint3.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\bint4.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\bint5.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\book3_saharov.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\dinamit.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\diplomat.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\gavr_monolit.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\komp_enter.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\komp_room.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\lis_kniga1.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\lis_knigi.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\medal.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\prizrak_sich.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\rabi.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\rabi_antenny.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\racia.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\radar.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\ruka.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\ruka2.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\safe_dezertir.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\secretlab_atp.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\secretlab_x10.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\skat15_x8.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\sladosti.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\small_termosi.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\vlad_killer.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Images\Unsorted\zapiski.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\locale.json">
