@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -8,15 +9,19 @@ using System.Windows.Media.Imaging;
 
 namespace SolyankaGuide.Internals
 {
-
-    internal class TextGen
+    internal static class TextGen
     {
-
         public static event Action<string, string, int, int>? SwitchDescription;
         public static event Action<BitmapImage>? MaximizeImage;
 
-        private static readonly SolidColorBrush spoilerColor = (SolidColorBrush) new BrushConverter().ConvertFromString("#1a1a1a")!;
-        public static TextBlock GetText(string[] text, bool centered, double width)
+        private static readonly SolidColorBrush SpoilerBrush = new(Color.FromRgb(26, 26, 26));
+        private static readonly Brush LinkBrush = Brushes.Aqua;
+        private static readonly Brush GuideBrush = Brushes.Yellow;
+        private static readonly Brush HoverBrush = Brushes.Gray;
+        private static readonly ConcurrentDictionary<string, BitmapImage> ImageCache = new();
+
+
+        public static TextBlock GetText(string[] lines, bool centered, double width)
         {
             var tb = new TextBlock
             {
@@ -28,173 +33,245 @@ namespace SolyankaGuide.Internals
                 Focusable = false,
                 Margin = new Thickness(0, 5, 0, 0)
             };
-
-            tb.SizeChanged += (s, e) =>
+            for (int i = 0; i < lines.Length; i++)
             {
-                foreach (var inline in tb.Inlines)
-                {
-                    if (inline == null) continue;
-                    if (inline is not InlineUIContainer ic) continue;
-                    if (ic.Child is not Grid g) continue;
-                    if (g.Children.Count == 0 || g.Children[0] is not Image img) continue;
-                    g.Width = tb.Width;
-                    img.Width = tb.ActualWidth / 3;
-                }
-            };
+                if (i > 0)
+                    tb.Inlines.Add(new LineBreak());
 
-            // Combined regex to find all supported tags in a single pass. Named groups identify which tag matched.
-            string pattern = @"%l=(?<link>.*?)%(?<linkText>.*?)%el%|%gl=(?<glParts>.*?)%(?<glText>.*?)%egl%|%img=(?<imgSrc>.*?)%(?<imgText>.*?)%eimg%|%s%(?<spoilerText>.*?)%es%";
-            var regex = new Regex(pattern);
-
-            foreach (var rawLine in text)
-            {
-                if (tb.Inlines.Count > 0)
-                    tb.Inlines.Add("\n");
-
-                string line = rawLine ?? string.Empty;
-                int lastIndex = 0;
-                var matches = regex.Matches(line);
-                foreach (Match match in matches)
-                {
-                    if (match.Index > lastIndex)
-                    {
-                        string before = line.Substring(lastIndex, match.Index - lastIndex);
-                        if (!string.IsNullOrEmpty(before)) tb.Inlines.Add(new Run(before));
-                    }
-
-                    if (match.Groups["link"].Success)
-                    {
-                        string url = match.Groups["link"].Value;
-                        string words = match.Groups["linkText"].Value;
-                        var hyperlink = new Hyperlink(new Run(words))
-                        {
-                            Foreground = Brushes.Aqua,
-                            TextDecorations = TextDecorations.Underline
-                        };
-                        hyperlink.Click += (s, e) => UrlOpener.OpenUrl(url);
-                        tb.Inlines.Add(hyperlink);
-                    }
-                    else if (match.Groups["glParts"].Success)
-                    {
-                        string firstGroup = match.Groups["glParts"].Value;
-                        string words = match.Groups["glText"].Value;
-                        var parts = firstGroup.Split('/');
-                        bool valid = parts.Length is >= 3 and <= 4;
-                        if (valid)
-                        {
-                            if (!int.TryParse(parts[2], out int eId) || eId < 0) valid = false;
-                            if (valid && parts.Length == 4)
-                            {
-                                if (!int.TryParse(parts[3], out int dId) || dId < 0) valid = false;
-                            }
-                        }
-                        if (!valid)
-                        {
-                            // If invalid, output the raw matched text as-is
-                            tb.Inlines.Add(new Run(match.Value));
-                        }
-                        else
-                        {
-                            var hyperlink = new Hyperlink(new Run(words))
-                            {
-                                Foreground = Brushes.Yellow,
-                                FontWeight = FontWeights.Bold
-                            };
-                            hyperlink.Click += (s, e) =>
-                            {
-                                SwitchDescription?.Invoke(parts[0], parts[1], int.Parse(parts[2]), parts.Length == 4 ? int.Parse(parts[3]) : -1);
-                            };
-                            tb.Inlines.Add(hyperlink);
-                        }
-                    }
-                    else if (match.Groups["imgSrc"].Success)
-                    {
-                        // Use legacy ImageInline behavior: show alt text as hyperlink that opens the image.
-                        string src = match.Groups["imgSrc"].Value;
-                        string alt = match.Groups["imgText"].Value;
-                        try
-                        {
-                            var bmi = ImageLoader.LoadImage(src);
-                            var hyperlink = new Hyperlink(new Run(alt))
-                            {
-                                Foreground = Brushes.Aqua,
-                                TextDecorations = TextDecorations.Underline
-                            };
-                            hyperlink.Click += (s, e) => MaximizeImage?.Invoke(bmi);
-                            tb.Inlines.Add(hyperlink);
-                        }
-                        catch
-                        {
-                            // on failure show the alt/text without hyperlink
-                            tb.Inlines.Add(new Run(alt));
-                        }
-                    }
-                    else if (match.Groups["spoilerText"].Success)
-                    {
-                        string words = match.Groups["spoilerText"].Value;
-                        var hyperlink = new Hyperlink(new Run(words))
-                        {
-                            Foreground = spoilerColor,
-                            Background = spoilerColor,
-                            TextDecorations = null,
-                            Cursor = Cursors.Arrow,
-                            Tag = false
-                        };
-
-                        hyperlink.Click += (s, e) =>
-                        {
-                            // On click: reveal permanently — make text white and remove background.
-                            if (hyperlink.Inlines.FirstInline is Run r)
-                            {
-                                r.Foreground = Brushes.White;
-                            }
-                            hyperlink.Background = Brushes.Transparent;
-                            hyperlink.Tag = true; // mark as revealed
-                        };
-
-                        hyperlink.MouseEnter += (s, e) =>
-                        {
-                            // If already revealed, do nothing on hover.
-                            if (hyperlink.Tag is bool clicked && clicked) return;
-                            // On hover before click keep text color the same as spoiler (i.e. equal to background),
-                            // so set both to a lighter shade but equal values.
-                            var hoverBrush = Brushes.Gray;
-                            hyperlink.Background = hoverBrush;
-                            if (hyperlink.Inlines.FirstInline is Run r)
-                            {
-                                r.Foreground = hoverBrush;
-                            }
-                        };
-
-                        hyperlink.MouseLeave += (s, e) =>
-                        {
-                            // If already revealed, do nothing on leave.
-                            if (hyperlink.Tag is bool clicked && clicked) return;
-                            // Revert both background and text to hidden color.
-                            hyperlink.Background = spoilerColor;
-                            if (hyperlink.Inlines.FirstInline is Run r)
-                            {
-                                r.Foreground = spoilerColor;
-                            }
-                        };
-                        tb.Inlines.Add(hyperlink);
-                    }
-
-                    lastIndex = match.Index + match.Length;
-                }
-
-                if (lastIndex < line.Length)
-                {
-                    string tail = line.Substring(lastIndex);
-                    if (!string.IsNullOrEmpty(tail)) tb.Inlines.Add(new Run(tail));
-                }
-
-                // If there were no matches at all, ensure the whole line is added
-                if (matches.Count == 0 && !string.IsNullOrEmpty(line))
-                    tb.Inlines.Add(new Run(line));
+                ParseLine(lines[i], tb);
             }
-
             return tb;
+        }
+
+        private static void ParseLine(string line, TextBlock tb)
+        {
+            int pos = 0;
+            while (pos < line.Length)
+            {
+                int percent = line.IndexOf('%', pos);
+
+                if (percent < 0)
+                {
+                    tb.Inlines.Add(new Run(line[pos..]));
+                    break;
+                }
+                if (percent > pos) tb.Inlines.Add(new Run(line[pos..percent]));
+                if (TryParseTag(line, percent, out int newPos, out Inline inline))
+                {
+                    tb.Inlines.Add(inline);
+                    pos = newPos;
+                }
+                else
+                {
+                    tb.Inlines.Add(new Run("%"));
+                    pos = percent + 1;
+                }
+            }
+        }
+
+        private static bool TryParseTag(string line, int start, out int newPos, out Inline inline)
+        {
+            inline = null!;
+            newPos = start;
+            if (line.AsSpan(start).StartsWith("%img="))
+                return TryParseImage(line, start, out newPos, out inline);
+            if (line.AsSpan(start).StartsWith("%gl="))
+                return TryParseGuide(line, start, out newPos, out inline);
+            if (line.AsSpan(start).StartsWith("%l="))
+                return TryParseLink(line, start, out newPos, out inline);
+            if (line.AsSpan(start).StartsWith("%s%"))
+                return TryParseSpoiler(line, start, out newPos, out inline);
+            return false;
+        }
+
+        private static bool TryParseImage(string line, int start, out int newPos, out Inline inline)
+        {
+            inline = null!;
+            newPos = start;
+            int pathEnd = line.IndexOf('%', start + 5);
+            if (pathEnd < 0) return false;
+            int close = line.IndexOf("%eimg%", pathEnd);
+            if (close < 0) return false;
+            string path = line[(start + 5)..pathEnd];
+            string text = line[(pathEnd + 1)..close];
+            inline = CreateImageLink(path, text);
+            newPos = close + 6;
+            return true;
+        }
+
+        private static bool TryParseGuide(string line, int start, out int newPos, out Inline inline)
+        {
+            inline = null!;
+            newPos = start;
+            int dataEnd = line.IndexOf('%', start + 4);
+            if (dataEnd < 0) return false;
+            int close = line.IndexOf("%egl%", dataEnd);
+            if (close < 0) return false;
+            string data = line[(start + 4)..dataEnd];
+            string text = line[(dataEnd + 1)..close];
+            inline = CreateGuideLink(data, text);
+            newPos = close + 5;
+            return true;
+        }
+
+        private static bool TryParseLink(string line, int start, out int newPos, out Inline inline)
+        {
+            inline = null!;
+            newPos = start;
+            int urlEnd = line.IndexOf('%', start + 3);
+            if (urlEnd < 0) return false;
+            int close = line.IndexOf("%el%", urlEnd);
+            if (close < 0) return false;
+            string url = line[(start + 3)..urlEnd];
+            string text = line[(urlEnd + 1)..close];
+            inline = CreateHyperLink(url, text);
+            newPos = close + 4;
+            return true;
+        }
+
+        private static bool TryParseSpoiler(string line, int start, out int newPos, out Inline inline)
+        {
+            inline = null!;
+            newPos = start;
+            int close = line.IndexOf("%es%", start + 3);
+            if (close < 0) return false;
+            string text = line[(start + 3)..close];
+            inline = CreateSpoiler(text);
+            newPos = close + 4;
+            return true;
+        }
+
+        private static Inline CreateImageLink(string path, string text)
+        {
+            var img = ImageCache.GetOrAdd(path, LoadImage);
+            var link = new Hyperlink(new Run(text))
+            {
+                Foreground = LinkBrush,
+                Tag = img
+            };
+            link.Click += OnImageClick;
+            return link;
+        }
+
+        private static void OnImageClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Hyperlink link && link.Tag is BitmapImage img) MaximizeImage?.Invoke(img);
+        }
+
+        private static BitmapImage LoadImage(string path)
+        {
+            var img = ImageLoader.LoadImage(path);
+            img.Freeze();
+            return img;
+        }
+
+        private static Inline CreateGuideLink(string data, string text)
+        {
+            if (!TryParseGuideData(data, out var parsed)) return new Run(text);
+            var link = new Hyperlink(new Run(text))
+            {
+                Foreground = GuideBrush,
+                FontWeight = FontWeights.Bold,
+                Tag = parsed
+            };
+            link.Click += OnGuideClick;
+            return link;
+        }
+
+        private static void OnGuideClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Hyperlink link && link.Tag is GuideData g) SwitchDescription?.Invoke(g.Category, g.ElementsList, g.ElementId, g.DescriptionId);
+        }
+
+        private static Inline CreateHyperLink(string url, string text)
+        {
+            var link = new Hyperlink(new Run(text))
+            {
+                Foreground = LinkBrush,
+                TextDecorations = TextDecorations.Underline,
+                Tag = url
+            };
+            link.Click += OnUrlClick;
+            return link;
+        }
+
+        private static void OnUrlClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Hyperlink link && link.Tag is string url) UrlOpener.OpenUrl(url);
+        }
+
+        private static Inline CreateSpoiler(string text)
+        {
+            var link = new Hyperlink(new Run(text))
+            {
+                Foreground = SpoilerBrush,
+                Background = SpoilerBrush,
+                Cursor = Cursors.Arrow,
+                TextDecorations = null, // убрали подчёркивание
+                Tag = false // false = не раскрыт
+            };
+            link.Click += OnSpoilerClick;
+            link.MouseEnter += OnSpoilerEnter;
+            link.MouseLeave += OnSpoilerLeave;
+            return link;
+        }
+
+        private static void OnSpoilerClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Hyperlink link)
+            {
+                link.Foreground = Brushes.White;
+                link.Background = Brushes.Transparent;
+                link.Tag = true; // помечаем как раскрытый
+            }
+        }
+
+        private static void OnSpoilerEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Hyperlink link)
+            {
+                if (link.Tag is bool opened && opened) return;
+                link.Foreground = HoverBrush;
+                link.Background = HoverBrush;
+            }
+        }
+
+        private static void OnSpoilerLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Hyperlink link)
+            {
+                if (link.Tag is bool opened && opened) return;
+                link.Foreground = SpoilerBrush;
+                link.Background = SpoilerBrush;
+            }
+        }
+
+        private static bool TryParseGuideData(string data, out GuideData result)
+        {
+            result = default;
+            var parts = data.Split('/');
+            if (parts.Length < 3 || parts.Length > 4) return false;
+            if (!int.TryParse(parts[2], out int entryId) || entryId < 0) return false;
+            int descId = -1;
+            if (parts.Length == 4 && (!int.TryParse(parts[3], out descId) || descId < 0)) return false;
+            result = new GuideData(parts[0], parts[1], entryId, descId);
+            return true;
+        }
+
+        private readonly struct GuideData
+        {
+            public readonly string Category;
+            public readonly string ElementsList;
+            public readonly int ElementId;
+            public readonly int DescriptionId;
+
+            public GuideData(string cat, string list, int elemId, int descId)
+            {
+                Category = cat;
+                ElementsList = list;
+                ElementId = elemId;
+                DescriptionId = descId;
+            }
         }
     }
 }
