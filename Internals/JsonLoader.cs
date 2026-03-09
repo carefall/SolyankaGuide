@@ -134,6 +134,13 @@ namespace SolyankaGuide.Internals
                         Logger.Log("JsonLoader", $"Elements list {elementsPath} is missing elements");
                         continue;
                     }
+                    foreach (var element in elements)
+                    {
+                        if (element.Descriptions == null && element.Text == null)
+                        {
+                            throw new Exception($"Element \"{element.Name}\" in list {elementsPath} is corrupted.");
+                        }
+                    }
                     totalElements.Add(new ElementList
                     {
                         Name = elementsPath,
