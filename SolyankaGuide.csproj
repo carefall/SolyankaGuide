@@ -281,6 +281,9 @@
 		<Content Include="Assets\Data\q_pripyat.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Data\q_hunters.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Data\Yantar\q_prizrakklik.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -1048,5 +1051,9 @@
 		</Content>
 		<Resource Include="Internals\Images\yt.png" />
 		<Resource Include="Internals\Images\vk.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Assets\Data\Yantar\Новая папка\" />
 	</ItemGroup>
 </Project>
