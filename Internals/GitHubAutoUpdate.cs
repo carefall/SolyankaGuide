@@ -92,7 +92,7 @@ namespace SolyankaGuide.Internals
             return 0;
         }
 
-        private static async Task<(Dictionary<string, string>? jsonsDict, Dictionary<string, string>? imagesDict)> GetGitHubHashes(string owner, string repo, string path)
+        private static async Task<(Dictionary<string, string>?, Dictionary<string, string>?)> GetGitHubHashes(string owner, string repo, string path)
         {
             string url = $"https://raw.githubusercontent.com/{owner}/{repo}/main/{path}";
             using HttpClient client = new()
