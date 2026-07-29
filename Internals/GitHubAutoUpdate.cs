@@ -40,7 +40,7 @@ namespace SolyankaGuide.Internals
                     filesToDelete.Add(path);
                     continue;
                 }
-                if (jsonsDict[localFile] != ComputeFileSha1(path)) filesToUpdate[localFile] = path;
+                if (jsonsDict[localFile] != ComputeFileSha1(path)) filesToUpdate["Data/" + localFile] = path;
             }
             foreach (string localFile in localImages)
             {
@@ -50,17 +50,17 @@ namespace SolyankaGuide.Internals
                     filesToDelete.Add(path);
                     continue;
                 }
-                if (imagesDict[localFile] != ComputeFileSha1(path)) filesToUpdate[localFile] = path;
+                if (imagesDict[localFile] != ComputeFileSha1(path)) filesToUpdate["Images/" + localFile] = path;
             }
             foreach(string gitFile in jsonsDict.Keys)
             {
-                string path = Path.Combine(@"Assets/Images", gitFile);
-                if (!localJsons.Contains(gitFile)) filesToUpdate[gitFile] = path;
+                string path = Path.Combine(@"Assets/Data", gitFile);
+                if (!localJsons.Contains(gitFile)) filesToUpdate["Data/" + gitFile] = path;
             }
             foreach (string gitFile in imagesDict.Keys)
             {
                 string path = Path.Combine(@"Assets/Images", gitFile);
-                if (!localImages.Contains(gitFile)) filesToUpdate[gitFile] = path;
+                if (!localImages.Contains(gitFile)) filesToUpdate["Images/" + gitFile] = path;
             }
             if (filesToUpdate.Count > 0 || filesToDelete.Count > 0)
             {
@@ -78,6 +78,7 @@ namespace SolyankaGuide.Internals
                     {
                         var key = keys[i];
                         status.Text = Locale.Get("installation", $"{i + 1} / {len}");
+                        MessageBox.Show(key);
                         await DownloadFile(key, filesToUpdate[key]);
                     }
                     foreach (var path in filesToDelete)
@@ -144,7 +145,7 @@ namespace SolyankaGuide.Internals
                 {
                     Timeout = TimeSpan.FromSeconds(10)
                 };
-                var data = await client.GetByteArrayAsync($"https://raw.githubusercontent.com/carefall/SolyankaGuide/main/Assets/Data/{file}");
+                var data = await client.GetByteArrayAsync($"https://raw.githubusercontent.com/carefall/SolyankaGuide/main/Assets/{file}");
                 Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
                 await File.WriteAllBytesAsync(destinationPath, data);
             }
