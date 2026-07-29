@@ -144,7 +144,7 @@ namespace SolyankaGuide.Internals
                 {
                     Timeout = TimeSpan.FromSeconds(10)
                 };
-                var data = await client.GetByteArrayAsync($"https://raw.githubusercontent.com/carefall/SolyankaGuide/main/Assets/{file}");
+                var data = await client.GetByteArrayAsync($"https://raw.githubusercontent.com/carefall/SolyankaGuide/main/Assets/Data/{file}");
                 Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
                 await File.WriteAllBytesAsync(destinationPath, data);
             }
